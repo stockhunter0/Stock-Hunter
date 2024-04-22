@@ -4,22 +4,37 @@ jobs:
   build-flutter:
     docker:
       - image: slashwhyorganization/flutter-sdk-image:3.19.0
-
     steps:
       - checkout
       - restore_cache:
           keys: [flutter-web-build]
       - run:
-          name: Build Flutter web app
+          name: Install dependencies
           command: |
             cd Flutter
             flutter pub get
+      - run:
+          name: Test flutter
+          command: |
+            cd Flutter
+            flutter test    
+      - run:
+          name: Build Flutter 
+          command: |
+            cd Flutter
             flutter build web
-            
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - build/web      
+      
       - save_cache:
           paths: [./.dart_tool/flutter/build]
           key: flutter-web-build
 
+
+  
 
 workflows:
   default:
