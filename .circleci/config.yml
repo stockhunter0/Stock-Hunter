@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-flutter:
     docker:
-      - image: slashwhyorganization/flutter-sdk-image:3.16.3
+      - image: slashwhyorganization/flutter-sdk-image:3.19.0
 
     steps:
       - checkout
