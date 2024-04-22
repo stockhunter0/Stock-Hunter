@@ -14,15 +14,15 @@ jobs:
             cd Flutter
             flutter pub get
       - run:
-          name: Test flutter
-          command: |
-            cd Flutter
-            flutter test    
-      - run:
           name: Build Flutter 
           command: |
             cd Flutter
             flutter build web
+      - run:
+          name: Test flutter
+          command: |
+            cd Flutter
+            flutter test          
 
       - persist_to_workspace:
           root: ~/
