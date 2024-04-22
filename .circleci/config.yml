@@ -3,7 +3,8 @@ version: 2.1
 jobs:
   build-flutter:
     docker:
-      - image: cirrusci/flutter
+      - image: circleci/flutter@2.0.2
+
     steps:
       - checkout
       - restore_cache:
