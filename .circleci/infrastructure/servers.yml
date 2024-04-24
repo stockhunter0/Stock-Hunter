@@ -59,11 +59,18 @@ Resources:
       KeyName: stockhunter_keypair
       SecurityGroups:
       - Ref: WebServerSecGroup
-      InstanceType: t2.micro
+      InstanceType: t2.small
+
       BlockDeviceMappings:
       - DeviceName: "/dev/sdk"
         Ebs:
-          VolumeSize: '10'
+          VolumeSize: '20'
+
+      # Tags:                            
+      #   - Key: Name                    
+      #     Value: stockhunter-webserver1          
+      #   - Key: Name
+      #     Value: stockhunter-webserver2                 
   WebAppGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
@@ -73,9 +80,14 @@ Resources:
       LaunchConfigurationName:
         Ref: WebAppLaunchConfig
       MinSize: '2'
-      MaxSize: '3'
+      MaxSize: '2'
       TargetGroupARNs:
       - Ref: WebAppTargetGroup
+      Tags:                            
+        - Key: Name                   
+          Value: stockhunter-webserver
+          PropagateAtLaunch: true         
+        
   WebAppLB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
@@ -120,3 +132,4 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
+  
