@@ -60,7 +60,7 @@ jobs:
               --region=us-east-1 \
               --tags project=stockhunterproject \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-              --tags project=stockhunterproject
+              
       - run:
           name: Ensure servers infrastructure exist
           command: |
@@ -71,7 +71,7 @@ jobs:
               --region=us-east-1 \ 
               --tags project=stockhunterproject \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-              --tags project= stockhunterproject
+              
               
       - run:
           name: install tar and gzip 
