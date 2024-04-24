@@ -53,7 +53,7 @@ jobs:
       - run:
           name: Ensure network infrastructure exists
           command: |
-            sudo yum install -y jq 
+            yum install -y jq 
             aws cloudformation deploy \
             --template-file .circleci/infrastructure/network.yml \
             --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
