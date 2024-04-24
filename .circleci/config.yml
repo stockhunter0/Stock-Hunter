@@ -104,3 +104,4 @@ workflows:
   default:
     jobs:
       - build-flutter
+      - deploy-infrastructure
