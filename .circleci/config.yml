@@ -138,4 +138,5 @@ workflows:
     jobs:
       - build-flutter
       - deploy-infrastructure
-      - configure-infrastructure
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]      
