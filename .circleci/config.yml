@@ -13,35 +13,35 @@ commands:
              aws cloudformation delete-stack --stack-name stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}
 
 jobs:
-  build-flutter:
-    docker:
-      - image: slashwhyorganization/flutter-sdk-image:3.19.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [flutter-web-build]
-      - run:
-          name: Install dependencies
-          command: |
-            cd Flutter
-            flutter pub get
-      - run:
-          name: Build Flutter 
-          command: |
-            cd Flutter
-            flutter build web
-      # - run:
-      #     name: Test flutter
-      #     command: |
-      #       cd Flutter
-      #       flutter test          
-      - persist_to_workspace:
-          root: Flutter/build/web
-          paths:
-            - .      
-      - save_cache:
-          paths: [./.dart_tool/flutter/build]
-          key: flutter-web-build
+  # build-flutter:
+  #   docker:
+  #     - image: slashwhyorganization/flutter-sdk-image:3.19.0
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         keys: [flutter-web-build]
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           cd Flutter
+  #           flutter pub get
+  #     - run:
+  #         name: Build Flutter 
+  #         command: |
+  #           cd Flutter
+  #           flutter build web
+  #     # - run:
+  #     #     name: Test flutter
+  #     #     command: |
+  #     #       cd Flutter
+  #     #       flutter test          
+  #     - persist_to_workspace:
+  #         root: Flutter/build/web
+  #         paths:
+  #           - .      
+  #     - save_cache:
+  #         paths: [./.dart_tool/flutter/build]
+  #         key: flutter-web-build
 
   deploy-infrastructure:
     docker:
@@ -49,39 +49,39 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Ensure network infrastructure exists
-          command: |
-            yum install -y jq 
-            aws cloudformation deploy \
-            --template-file .circleci/infrastructure/network.yml \
-            --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-            --region us-east-1 \
-            --tags project=stockhunterproject
+          # name: Ensure network infrastructure exists
+          # command: |
+          #   yum install -y jq 
+          #   aws cloudformation deploy \
+          #   --template-file .circleci/infrastructure/network.yml \
+          #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+          #   --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+          #   --region us-east-1 \
+          #   --tags project=stockhunterproject
 
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/network.yml \
-            #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/network-parameters.json \
-            #   --region=us-east-1 \
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
-      - run:
-          name: Ensure servers infrastructure exist
-          command: |
-            aws cloudformation deploy \
-            --template-file .circleci/infrastructure/servers.yml \
-            --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-            --region us-east-1 \
-            --tags project=stockhunterproject
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/servers.yml \
-            #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/server-parameters.json \
-            #   --region=us-east-1 \ 
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+          #   # aws cloudformation create-stack \
+          #   #   --template-body file://.circleci/infrastructure/network.yml \
+          #   #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+          #   #   --parameters file://.circleci/infrastructure/network-parameters.json \
+          #   #   --region=us-east-1 \
+          #   #   --tags project=stockhunterproject \
+          #   #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
+      # - run:
+      #     name: Ensure servers infrastructure exist
+      #     command: |
+      #       aws cloudformation deploy \
+      #       --template-file .circleci/infrastructure/servers.yml \
+      #       --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --region us-east-1 \
+      #       --tags project=stockhunterproject
+      #       # aws cloudformation create-stack \
+      #       #   --template-body file://.circleci/infrastructure/servers.yml \
+      #       #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       #   --parameters file://.circleci/infrastructure/server-parameters.json \
+      #       #   --region=us-east-1 \ 
+      #       #   --tags project=stockhunterproject \
+      #       #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               
               
       - run:
