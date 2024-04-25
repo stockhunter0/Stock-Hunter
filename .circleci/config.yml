@@ -35,12 +35,10 @@ jobs:
       #     command: |
       #       cd Flutter
       #       flutter test          
-
       - persist_to_workspace:
           root: Flutter/build/web
           paths:
             - .      
-      
       - save_cache:
           paths: [./.dart_tool/flutter/build]
           key: flutter-web-build
@@ -67,9 +65,7 @@ jobs:
             #   --parameters file://.circleci/infrastructure/network-parameters.json \
             #   --region=us-east-1 \
             #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-              
-            
+            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
       - run:
           name: Ensure servers infrastructure exist
           command: |
@@ -112,9 +108,29 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt  
-      # - destroy-environment        
-      
+      # - destroy-environment  
 
+  configure-infrastructure:
+    docker:
+      - image: python:3.12.0rc3-alpine3.18
+    steps:
+      - checkout
+      - add_ssh_keys:
+           fingerprints: ["SHA256:jZ/eCn+oNL2N9pUS8HTv09gldfrrVw6EilsMN4VCwYA"] 
+      - attach_workspace:
+         at: ~/
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+            apk add --update tar gzip
+            
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            ansible-playbook -i inventory.txt configure-server.yml    
+  
   
 
 workflows:
@@ -122,3 +138,4 @@ workflows:
     jobs:
       - build-flutter
       - deploy-infrastructure
+      - configure-infrastructure
