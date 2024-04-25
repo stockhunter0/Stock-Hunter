@@ -11,16 +11,9 @@
     - ansible_stdout_callback: yaml
 
   pre_tasks:
-    - name: "Wait for target connection to become reachable/usable"
-      wait_for:
-        host: "{{ inventory_hostname }}"
-        port: 22
-        timeout: 120
-        become: no
-        ignore_errors: yes 
-    # - name: "wait 120 seconds for target connection to become reachable/usable."
-    #   wait_for_connection:
-    #      timeout: 120
+    - name: "wait 120 seconds for target connection to become reachable/usable."
+      wait_for_connection:
+         timeout: 120
 
     - name: Install python for Ansible
       become: true
