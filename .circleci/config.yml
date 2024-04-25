@@ -102,7 +102,7 @@ jobs:
                 IP_ADDRESSES="$IP_ADDRESSES $PUBLIC_IP"
             done
             # Append the IP addresses to the Ansible inventory file
-            echo "[web-servers]" >> .circleci/ansible/inventory.txt
+            echo "[webservers]" >> .circleci/ansible/inventory.txt
             echo "$IP_ADDRESSES" | tr ' ' '\n' >> .circleci/ansible/inventory.txt  
             cat .circleci/ansible/inventory.txt             
       - persist_to_workspace:
