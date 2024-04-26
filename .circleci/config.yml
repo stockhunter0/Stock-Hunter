@@ -156,8 +156,9 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            ls
-            tar -C Flutter/build/web -czvf artifact.tar.gz . 
+            #ls
+            tar -C Flutter/build/web -czvf artifact.tar.gz .
+             
             # mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
             # mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
             # cd .circleci/ansible
