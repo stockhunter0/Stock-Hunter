@@ -117,7 +117,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-           fingerprints: ["SHA256:jZ/eCn+oNL2N9pUS8HTv09gldfrrVw6EilsMN4VCwYA"] 
+         fingerprints: ["SHA256:jZ/eCn+oNL2N9pUS8HTv09gldfrrVw6EilsMN4VCwYA"] 
       - attach_workspace:
          at: ~/
       - run:
