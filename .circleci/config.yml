@@ -123,10 +123,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt update
-            sudo apt install -y ansible
-            # apk add --update ansible
-            # apk add --update tar gzip
+            # sudo apt update
+            # sudo apt install -y ansible
+            apk add --update ansible
+            apk add --update tar gzip
             
       - run:
           name: Configure server
