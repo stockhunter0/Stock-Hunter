@@ -9,6 +9,8 @@ for INSTANCE_ID in $INSTANCE_IDS; do
     IP_ADDRESSES="$IP_ADDRESSES $PUBLIC_IP"
 done
 # Append the IP addresses to the Ansible inventory file
-echo "[group_name]" >> inventory.txt
-echo "$IP_ADDRESSES" | tr ' ' '\n' >> inventory.txt
+echo "[webservers]" >> .circleci/ansible/inventory.txt
+echo "$IP_ADDRESSES" | tr ' ' '\n' >> .circleci/ansible/inventory.txt
+
+  
 

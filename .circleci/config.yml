@@ -48,40 +48,40 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      # - run:
-          # name: Ensure network infrastructure exists
-          # command: |
-          #   yum install -y jq 
-          #   aws cloudformation deploy \
-          #   --template-file .circleci/infrastructure/network.yml \
-          #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-          #   --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-          #   --region us-east-1 \
-          #   --tags project=stockhunterproject
+      - run:
+          name: Ensure network infrastructure exists
+          command: |
+            yum install -y jq 
+            aws cloudformation deploy \
+            --template-file .circleci/infrastructure/network.yml \
+            --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+            --region us-east-1 \
+            --tags project=stockhunterproject
 
-          #   # aws cloudformation create-stack \
-          #   #   --template-body file://.circleci/infrastructure/network.yml \
-          #   #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-          #   #   --parameters file://.circleci/infrastructure/network-parameters.json \
-          #   #   --region=us-east-1 \
-          #   #   --tags project=stockhunterproject \
-          #   #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
-      # - run:
-      #     name: Ensure servers infrastructure exist
-      #     command: |
-      #       aws cloudformation deploy \
-      #       --template-file .circleci/infrastructure/servers.yml \
-      #       --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --region us-east-1 \
-      #       --tags project=stockhunterproject
-      #       # aws cloudformation create-stack \
-      #       #   --template-body file://.circleci/infrastructure/servers.yml \
-      #       #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       #   --parameters file://.circleci/infrastructure/server-parameters.json \
-      #       #   --region=us-east-1 \ 
-      #       #   --tags project=stockhunterproject \
-      #       #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+            # aws cloudformation create-stack \
+            #   --template-body file://.circleci/infrastructure/network.yml \
+            #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+            #   --parameters file://.circleci/infrastructure/network-parameters.json \
+            #   --region=us-east-1 \
+            #   --tags project=stockhunterproject \
+            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
+      - run:
+          name: Ensure servers infrastructure exist
+          command: |
+            aws cloudformation deploy \
+            --template-file .circleci/infrastructure/servers.yml \
+            --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+            --region us-east-1 \
+            --tags project=stockhunterproject
+            # aws cloudformation create-stack \
+            #   --template-body file://.circleci/infrastructure/servers.yml \
+            #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+            #   --parameters file://.circleci/infrastructure/server-parameters.json \
+            #   --region=us-east-1 \ 
+            #   --tags project=stockhunterproject \
+            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               
               
       - run:
@@ -113,7 +113,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.8.2-alpine #circleci/python:3.8     python:3.12.0rc3-alpine3.18                    python:3.8.2-alpine
+      - image: python:3.12.0rc3-alpine3.18  #circleci/python:3.8     python:3.12.0rc3-alpine3.18                    python:3.8.2-alpine
     steps:
       - checkout
       - add_ssh_keys:
