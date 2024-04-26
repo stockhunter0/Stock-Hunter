@@ -13,81 +13,81 @@ commands:
              aws cloudformation delete-stack --stack-name stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}
 
 jobs:
-  # build-flutter:
-  #   docker:
-  #     - image: slashwhyorganization/flutter-sdk-image:3.19.0
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         keys: [flutter-web-build]
-  #     - run:
-  #         name: Install dependencies
-  #         command: |
-  #           cd Flutter
-  #           flutter pub get
-  #     - run:
-  #         name: Build Flutter 
-  #         command: |
-  #           cd Flutter
-  #           flutter build web
-  #     # - run:
-  #     #     name: Test flutter
-  #     #     command: |
-  #     #       cd Flutter
-  #     #       flutter test          
-  #     - persist_to_workspace:
-  #         root: Flutter/build/web
-  #         paths:
-  #           - .      
-  #     - save_cache:
-  #         paths: [./.dart_tool/flutter/build]
-  #         key: flutter-web-build
+  build-flutter:
+    docker:
+      - image: slashwhyorganization/flutter-sdk-image:3.19.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys: [flutter-web-build]
+      - run:
+          name: Install dependencies
+          command: |
+            cd Flutter
+            flutter pub get
+      - run:
+          name: Build Flutter 
+          command: |
+            cd Flutter
+            flutter build web
+      # - run:
+      #     name: Test flutter
+      #     command: |
+      #       cd Flutter
+      #       flutter test          
+      - persist_to_workspace:
+          root: Flutter/build/web
+          paths:
+            - .      
+      - save_cache:
+          paths: [./.dart_tool/flutter/build]
+          key: flutter-web-build
 
   deploy-infrastructure:
     docker:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run:
-          name: Ensure network infrastructure exists
-          command: |
-            yum install -y jq 
-            aws cloudformation deploy \
-            --template-file .circleci/infrastructure/network.yml \
-            --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-            --region us-east-1 \
-            --tags project=stockhunterproject
+      # - run:
+      #     name: Ensure network infrastructure exists
+      #     command: |
+      #       yum install -y jq 
+      #       aws cloudformation deploy \
+      #       --template-file .circleci/infrastructure/network.yml \
+      #       --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --region us-east-1 \
+      #       --tags project=stockhunterproject
 
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/network.yml \
-            #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/network-parameters.json \
-            #   --region=us-east-1 \
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
-      - run:
-          name: Ensure servers infrastructure exist
-          command: |
-            aws cloudformation deploy \
-            --template-file .circleci/infrastructure/servers.yml \
-            --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-            --region us-east-1 \
-            --tags project=stockhunterproject
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/servers.yml \
-            #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/server-parameters.json \
-            #   --region=us-east-1 \ 
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       # aws cloudformation create-stack \
+      #       #   --template-body file://.circleci/infrastructure/network.yml \
+      #       #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       #   --parameters file://.circleci/infrastructure/network-parameters.json \
+      #       #   --region=us-east-1 \
+      #       #   --tags project=stockhunterproject \
+      #       #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \      
+      # - run:
+      #     name: Ensure servers infrastructure exist
+      #     command: |
+      #       aws cloudformation deploy \
+      #       --template-file .circleci/infrastructure/servers.yml \
+      #       --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       --region us-east-1 \
+      #       --tags project=stockhunterproject
+      #       # aws cloudformation create-stack \
+      #       #   --template-body file://.circleci/infrastructure/servers.yml \
+      #       #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+      #       #   --parameters file://.circleci/infrastructure/server-parameters.json \
+      #       #   --region=us-east-1 \ 
+      #       #   --tags project=stockhunterproject \
+      #       #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
               
               
-      - run:
-          name: install tar and gzip 
-          command: |
-             yum -y install tar gzip
+      # - run:
+      #     name: install tar and gzip 
+      #     command: |
+      #        yum -y install tar gzip
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -133,13 +133,46 @@ jobs:
           command: |
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml    
-  
+
+  deploy-flutter:
+    docker:
+      - image: python:3.12.0rc3-alpine3.18
+    steps:
+      - checkout
+      - add_ssh_keys:
+           fingerprints: ["SHA256:jZ/eCn+oNL2N9pUS8HTv09gldfrrVw6EilsMN4VCwYA"] 
+      - attach_workspace:
+         at: ~/
+      - restore_cache:
+          keys:
+            - flutter-web-build   
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+            apk add --update tar gzip
+            # apk add --update nodejs
+            # apk add --update npm
+      - run:
+          name: Deploy backend
+          command: |
+            ls
+            tar -C Flutter/build/web -czvf artifact.tar.gz . 
+            # mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
+            # mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
+            # cd .circleci/ansible
+            # echo "Contents  of the inventory.txt file is -------"
+            # cat inventory.txt
+            # ansible-playbook -i inventory.txt deploy-backend.yml   
   
 
 workflows:
   default:
     jobs:
-      # - build-flutter
+      - build-flutter
       - deploy-infrastructure
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]      
+      # - configure-infrastructure:
+         #requires: [deploy-infrastructure]      
+      - deploy-flutter:
+          requires: [deploy-infrastructure] 
+             
