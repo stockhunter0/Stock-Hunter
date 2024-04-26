@@ -123,16 +123,16 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            # sudo apt update
-            # sudo apt install -y ansible
-            apk add --update ansible
-            apk add --update tar gzip
+            ls 
             
-      - run:
-          name: Configure server
-          command: |
-            cd .circleci/ansible
-            ansible-playbook -i inventory.txt configure-server.yml    
+            # apk add --update ansible
+            # apk add --update tar gzip
+            
+      # - run:
+      #     name: Configure server
+      #     command: |
+      #       cd .circleci/ansible
+      #       ansible-playbook -i inventory.txt configure-server.yml    
 
   deploy-flutter:
     docker:
@@ -173,8 +173,8 @@ workflows:
       - build-flutter
       - deploy-infrastructure:
           requires: [build-flutter]
-      # - configure-infrastructure:
-         #requires: [deploy-infrastructure]      
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]      
       - deploy-flutter:
-          requires: [deploy-infrastructure] 
+          requires: [configure-infrastructure] 
              
