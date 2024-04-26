@@ -1,27 +1,22 @@
-- name: "update apt packages."
+- name: Update packages
   become: yes
-  apt:
-    update_cache: yes
-
-- name: "upgrade packages"
-  become: yes
-  apt:
-    upgrade: yes
-
-
-- name: remove dependencies that are no longer required
-  become: yes
-  apt:
-    autoremove: yes
+  yum:
+    name: "*"
+    state: latest
+  tags:
+    - update
 
 - name: Install Git
-  apt:
+  become: yes
+  yum:
     name: git
     state: present
-  become: true
-   
+  tags:
+    - git
+
 - name: Install required packages
-  apt:
+  become: yes
+  yum:
     name:
       - libXcomposite
       - libXcursor
@@ -29,29 +24,88 @@
       - libXext
       - libXi
       - libXtst
-      - cups-libs
-      - libXScrnSaver
       - libXrandr
+      - libXScrnSaver
       - alsa-lib
       - atk
-      - gtk3.x86_64
-      - gtk3-devel
+      - gtk3
       - clang
       - cmake
       - ninja-build
     state: present
-  become: true
+  tags:
+    - packages
 
 - name: Install nginx
-  apt: 
+  become: yes
+  yum:
     name: nginx
     state: present
+  tags:
+    - nginx
 
 - name: Download Flutter SDK archive
   get_url:
     url: "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz"
     dest: "/tmp/flutter_linux_3.19.6-stable.tar.xz"
-  become: true
+  become: yes
+  tags:
+    - flutter
+
+# - name: "update packages."
+#   become: yes
+#   apt:
+#     update_cache: yes
+
+# - name: "upgrade packages"
+#   become: yes
+#   apt:
+#     upgrade: yes
+
+
+# - name: remove dependencies that are no longer required
+#   become: yes
+#   apt:
+#     autoremove: yes
+
+# - name: Install Git
+#   apt:
+#     name: git
+#     state: present
+#   become: true
+   
+# - name: Install required packages
+#   apt:
+#     name:
+#       - libXcomposite
+#       - libXcursor
+#       - libXdamage
+#       - libXext
+#       - libXi
+#       - libXtst
+#       - cups-libs
+#       - libXScrnSaver
+#       - libXrandr
+#       - alsa-lib
+#       - atk
+#       - gtk3.x86_64
+#       - gtk3-devel
+#       - clang
+#       - cmake
+#       - ninja-build
+#     state: present
+#   become: true
+
+# - name: Install nginx
+#   apt: 
+#     name: nginx
+#     state: present
+
+# - name: Download Flutter SDK archive
+#   get_url:
+#     url: "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz"
+#     dest: "/tmp/flutter_linux_3.19.6-stable.tar.xz"
+#   become: true
   
     
 # - name: "install dependencies."

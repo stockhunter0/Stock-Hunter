@@ -1,6 +1,6 @@
 - name: "configuration play." 
   hosts: webservers
-  user: ubuntu
+  user: ec2-user
   become: true
   become_method: sudo
   become_user: root  
@@ -17,9 +17,9 @@
 
     - name: Install python for Ansible
       become: true
-      apt:
+      dnf:
         name: python3
-        update_cache: yes 
+        state: present 
 
   # environment: 
   #   - TYPEORM_CONNECTION: postgres
