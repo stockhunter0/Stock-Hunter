@@ -171,7 +171,8 @@ workflows:
   default:
     jobs:
       - build-flutter
-      - deploy-infrastructure
+      - deploy-infrastructure:
+          requires: [build-flutte]
       # - configure-infrastructure:
          #requires: [deploy-infrastructure]      
       - deploy-flutter:
