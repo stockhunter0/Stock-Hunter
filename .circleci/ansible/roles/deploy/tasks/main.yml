@@ -29,16 +29,13 @@
     state: started
     enabled: yes
 
-- name: Configure Nginx
-  hosts: webservers
-  become: true
-  tasks:
-    - name: Copy Nginx configuration template
-      template:
-        src: nginx.conf.j2
-        dest: /etc/nginx/conf.d/{{ item }}.conf
-      loop: "{{ groups['webservers'] }}"
-      notify: Restart Nginx
+
+- name: Copy Nginx configuration template
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/{{ item }}.conf
+  loop: "{{ groups['webservers'] }}"
+  notify: Restart Nginx
 
   handlers:
     - name: Restart Nginx
