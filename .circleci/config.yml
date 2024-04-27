@@ -29,7 +29,7 @@ jobs:
           name: Build Flutter 
           command: |
             cd Flutter
-            flutter build web --relaese
+            flutter build web --release
       # - run:
       #     name: Test flutter
       #     command: |
