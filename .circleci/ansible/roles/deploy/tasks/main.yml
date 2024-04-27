@@ -37,11 +37,15 @@
   loop: "{{ groups['webservers'] }}"
   notify: Restart Nginx
 
-  handlers:
-    - name: Restart Nginx
-      service:
-        name: nginx
-        state: restarted
+- name: Restart Nginx service
+  service:
+    name: nginx
+    state: restarted
+  # handlers:
+  #   - name: Restart Nginx
+  #     service:
+  #       name: nginx
+  #       state: restarted
 
 
 # - name: Configure Nginx
