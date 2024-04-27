@@ -11,24 +11,64 @@
   become: yes
   unarchive:
     src: files/artifact.tar.gz
-    dest: .
+    dest: stockhunter/build/web
 
 - name: start applications
   become: yes
   shell: |
-    export ENVIRONMENT=develpment
-    export TYPEORM_ENTITIES=".src/modules/domain/**/*.entity.js"
-    export TYPEORM_MIGRATIONS=".src/migrations/*.js"
-    export TYPEORM_MIGRATIONS_DIR=".src/migrations"
-    export TYPEORM_CONNECTION="postgres"
-    export TYPEORM_HOST="database-1.csub2uflo81x.us-east-1.rds.amazonaws.com"
-    export TYPEORM_USERNAME="postgres"
-    export TYPEORM_PASSWORD="12345678"
-    export TYPEORM_DATABASE="my1stdb"
-    export TYPEORM_PORT=5432
-    sudo npm install
-    sudo pm2 stop default
-    sudo pm2 start npm -- start
+    tar xf /tmp/flutter_linux_3.19.6-stable.tar.xz
+    export PATH="$PATH:`pwd`/flutter/bin"
+    flutter precache
+    cd /
+    # sudo systemctl start nginx
+    # sudo systemctl enable nginx
+
+- name: Ensure Nginx service is started and enabled
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Configure Nginx
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Copy Nginx configuration template
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/conf.d/{{ item }}.conf
+      loop: "{{ groups['webservers'] }}"
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
+
+# - name: Configure Nginx
+#   hosts: web_servers
+#   tasks:
+#     - name: Configure Nginx server block
+#       template:
+#         src: nginx.conf.j2
+#         dest: /etc/nginx/conf.d/{{ item }}.conf
+#       loop: "{{ groups['web_servers'] }}"
+
+    # export ENVIRONMENT=develpment
+    # export TYPEORM_ENTITIES=".src/modules/domain/**/*.entity.js"
+    # export TYPEORM_MIGRATIONS=".src/migrations/*.js"
+    # export TYPEORM_MIGRATIONS_DIR=".src/migrations"
+    # export TYPEORM_CONNECTION="postgres"
+    # export TYPEORM_HOST="database-1.csub2uflo81x.us-east-1.rds.amazonaws.com"
+    # export TYPEORM_USERNAME="postgres"
+    # export TYPEORM_PASSWORD="12345678"
+    # export TYPEORM_DATABASE="my1stdb"
+    # export TYPEORM_PORT=5432
+    # sudo npm install
+    # sudo pm2 stop default
+    # sudo pm2 start npm -- start
   # args:
   #   chdir: /home/ubuntu/dist
 

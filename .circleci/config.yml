@@ -29,7 +29,7 @@ jobs:
           name: Build Flutter 
           command: |
             cd Flutter
-            flutter build web
+            flutter build web --relaese
       # - run:
       #     name: Test flutter
       #     command: |
@@ -123,16 +123,15 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            ls 
             
-            # apk add --update ansible
-            # apk add --update tar gzip
+            apk add --update ansible
+            apk add --update tar gzip
             
-      # - run:
-      #     name: Configure server
-      #     command: |
-      #       cd .circleci/ansible
-      #       ansible-playbook -i inventory.txt configure-server.yml    
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            ansible-playbook -i inventory.txt configure-server.yml    
 
   deploy-flutter:
     docker:
@@ -156,15 +155,13 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            #ls
             tar -C Flutter/build/web -czvf artifact.tar.gz .
-            ls 
-            # mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
-            # mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
-            # cd .circleci/ansible
-            # echo "Contents  of the inventory.txt file is -------"
-            # cat inventory.txt
-            # ansible-playbook -i inventory.txt deploy-backend.yml   
+            mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
+            mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
+            cd .circleci/ansible
+            echo "Contents  of the inventory.txt file is -------"
+            cat inventory.txt
+            ansible-playbook -i inventory.txt deploy-backend.yml   
   
 
 workflows:
