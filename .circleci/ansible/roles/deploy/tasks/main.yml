@@ -10,7 +10,7 @@
 - name: start applications
   become: yes
   shell: |
-    sudo yum install -y tar unzip
+    sudo yum install -y tar unzip gzip 
     tar xf /tmp/flutter_linux_3.19.6-stable.tar.xz
     export PATH="$PATH:`pwd`/flutter/bin"
     flutter precache
@@ -22,7 +22,7 @@
   become: yes
   unarchive:
     src: files/artifact.tar.gz
-    dest: stockhunter/build/web
+    dest: ~/stockhunter/build/web
 
 - name: Ensure Nginx service is started and enabled
   systemd:

@@ -149,7 +149,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            apk add --update tar gzip
+            apk add --update tar gzip unzip
             # apk add --update nodejs
             # apk add --update npm
       - run:
