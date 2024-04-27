@@ -10,6 +10,7 @@
 - name: start applications
   become: yes
   shell: |
+    sudo yum install -y tar unzip
     tar xf /tmp/flutter_linux_3.19.6-stable.tar.xz
     export PATH="$PATH:`pwd`/flutter/bin"
     flutter precache
