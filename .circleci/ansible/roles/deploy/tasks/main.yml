@@ -7,21 +7,21 @@
 #   shell: |
 #     tar -xzvf artifact.tar.gz
 
-- name: extract artifact
-  become: yes
-  unarchive:
-    src: files/artifact.tar.gz
-    dest: stockhunter/build/web
-
 - name: start applications
   become: yes
   shell: |
     tar xf /tmp/flutter_linux_3.19.6-stable.tar.xz
     export PATH="$PATH:`pwd`/flutter/bin"
     flutter precache
-    cd /
+    mkdir -p stockhunter/build/web
     # sudo systemctl start nginx
     # sudo systemctl enable nginx
+
+- name: extract artifact
+  become: yes
+  unarchive:
+    src: files/artifact.tar.gz
+    dest: stockhunter/build/web
 
 - name: Ensure Nginx service is started and enabled
   systemd:
