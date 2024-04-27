@@ -1,5 +1,5 @@
 - name: "configuration play." 
-  hosts: webserver
+  hosts: webservers
   user: ec2-user
   gather_facts: false
   vars:
