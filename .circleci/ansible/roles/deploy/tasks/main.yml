@@ -1,12 +1,3 @@
-# - name: "copy files"
-#   template:
-#     src: "files/back-end"
-#     dest: "~/"
-
-# - name: "unzip files"
-#   shell: |
-#     tar -xzvf artifact.tar.gz
-
 - name: start applications
   become: yes
   shell: |
@@ -30,13 +21,6 @@
     mkdir -p stockhunter/build/web
     tar -xzf /tmp/artifact.tar.gz -C stockhunter/build/web
 
-# - name: extract artifact
-#   become: yes
-#   unarchive:
-#     src: "/tmp/artifact.tar.gz"
-#     dest: "stockhunter/build/web"
-#     remote_src: yes 
-
 - name: Ensure Nginx service is started and enabled
   become: yes
   systemd:
@@ -44,6 +28,11 @@
     state: started
     enabled: yes
 
+- name : Prepare Files
+  become: yes
+  shell: |
+    mkdir -p /var/www/stockhunter
+    cp -r stockhunter/build/web /var/www/stockhunter
 
 - name: Copy Nginx configuration template
   become: yes
@@ -51,19 +40,14 @@
     src: nginx.conf.j2
     dest: /etc/nginx/conf.d/{{ item }}.conf
   loop: "{{ groups['webservers'] }}"
-  # notify: Restart Nginx
+  
 
 - name: Restart Nginx service
   become: yes
   service:
     name: nginx
     state: restarted
-  # handlers:
-  #   - name: Restart Nginx
-  #     service:
-  #       name: nginx
-  #       state: restarted
-
+  
 
 # - name: Configure Nginx
 #   hosts: web_servers
