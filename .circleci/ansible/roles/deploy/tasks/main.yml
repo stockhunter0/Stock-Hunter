@@ -22,7 +22,8 @@
   become: yes
   unarchive:
     src: files/artifact.tar.gz
-    dest: ~/stockhunter/build/web
+    dest: stockhunter/build/web
+    remote_src: yes 
 
 - name: Ensure Nginx service is started and enabled
   systemd:
