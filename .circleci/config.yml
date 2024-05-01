@@ -198,6 +198,7 @@ jobs:
       - run:
           name: Get load balancer URL
           command: |
+            #!/bin/bash
             LB_URL=$(aws elbv2 describe-load-balancers --query "LoadBalancers[0].DNSName" --output text)
             echo "Load balancer URL: $LB_URL"
             if curl -s ${LB_URL} | grep "Welcome"
