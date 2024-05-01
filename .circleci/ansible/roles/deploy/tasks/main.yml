@@ -18,12 +18,19 @@
     # sudo systemctl start nginx
     # sudo systemctl enable nginx
 
+- name: Copy artifact.tar.gz to remote host
+  copy:
+    src: "files/artifact.tar.gz"  # Path to the artifact.tar.gz file on the local host
+    dest: "/tmp/artifact.tar.gz"               # Destination path on the remote host
+    mode: '0644'                               # Set appropriate permissions for the file
+
+
 - name: extract artifact
   become: yes
   unarchive:
-    src: files/artifact.tar.gz
-    dest: stockhunter/build/web
-    remote_src: yes 
+    src: "/tmp/artifact.tar.gz"
+    dest: "stockhunter/build/web"
+    # remote_src: yes 
 
 - name: Ensure Nginx service is started and enabled
   systemd:
