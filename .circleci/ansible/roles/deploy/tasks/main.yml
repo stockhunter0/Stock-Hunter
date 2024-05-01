@@ -38,6 +38,7 @@
 #     remote_src: yes 
 
 - name: Ensure Nginx service is started and enabled
+  become: yes
   systemd:
     name: nginx
     state: started
@@ -52,6 +53,7 @@
   notify: Restart Nginx
 
 - name: Restart Nginx service
+  become: yes
   service:
     name: nginx
     state: restarted
