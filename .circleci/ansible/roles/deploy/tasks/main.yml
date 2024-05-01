@@ -14,7 +14,7 @@
     tar xf /tmp/flutter_linux_3.19.6-stable.tar.xz
     export PATH="$PATH:`pwd`/flutter/bin"
     flutter precache
-    mkdir -p stockhunter/build/web
+    # mkdir -p stockhunter/build/web
     # sudo systemctl start nginx
     # sudo systemctl enable nginx
 
@@ -24,13 +24,18 @@
     dest: "/tmp/artifact.tar.gz"               # Destination path on the remote host
     mode: '0644'                               # Set appropriate permissions for the file
 
-
-- name: extract artifact
+- name: Unzip artifact file
   become: yes
-  unarchive:
-    src: "/tmp/artifact.tar.gz"
-    dest: "stockhunter/build/web"
-    remote_src: yes 
+  shell: |
+    mkdir -p stockhunter/build/web
+    tar -xzf /tmp/artifact.tar.gz -C stockhunter/build/web
+
+# - name: extract artifact
+#   become: yes
+#   unarchive:
+#     src: "/tmp/artifact.tar.gz"
+#     dest: "stockhunter/build/web"
+#     remote_src: yes 
 
 - name: Ensure Nginx service is started and enabled
   systemd:
