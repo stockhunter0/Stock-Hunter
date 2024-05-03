@@ -201,58 +201,58 @@ Outputs:
         Description: A reference to the created VPC
         Value: !Ref VPC
         Export:
-          Name: !Sub "${EnvironmentName}-VPCID-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub VPCID-${CIRCLE_WORKFLOW_ID:0:7}
 
     VPCPublicRouteTable:
         Description: Public Routing
         Value: !Ref PublicRouteTable
         Export:
-          Name: !Sub "${EnvironmentName}-PUB-RT-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PUB-RT-${CIRCLE_WORKFLOW_ID:0:7}
 
     VPCPrivateRouteTable1:
         Description: Private Routing AZ1
         Value: !Ref PrivateRouteTable1
         Export:
-          Name: !Sub "${EnvironmentName}-PRI1-RT-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PRI1-RT-${CIRCLE_WORKFLOW_ID:0:7}
 
     VPCPrivateRouteTable2:
         Description: Private Routing AZ2
         Value: !Ref PrivateRouteTable2
         Export:
-          Name: !Sub "${EnvironmentName}-PRI2-RT-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PRI2-RT-${CIRCLE_WORKFLOW_ID:0:7}
 
     PublicSubnets:
         Description: A list of the public subnets
         Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
         Export:
-          Name: !Sub "${EnvironmentName}-PUB-NETS-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PUB-NETS-${CIRCLE_WORKFLOW_ID:0:7}
 
     PrivateSubnets:
         Description: A list of the private subnets
         Value: !Join [ ",", [ !Ref PrivateSubnet1, !Ref PrivateSubnet2 ]]
         Export:
-          Name: !Sub "${EnvironmentName}-PRIV-NETS-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PRIV-NETS-${CIRCLE_WORKFLOW_ID:0:7}
 
     PublicSubnet1:
         Description: A reference to the public subnet in the 1st Availability Zone
         Value: !Ref PublicSubnet1
         Export:
-          Name: !Sub "${EnvironmentName}-PUB1-SN-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PUB1-SN-${CIRCLE_WORKFLOW_ID:0:7}
 
     PublicSubnet2: 
         Description: A reference to the public subnet in the 2nd Availability Zone
         Value: !Ref PublicSubnet2
         Export:
-          Name: !Sub "${EnvironmentName}-PUB2-SN-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PUB2-SN-${CIRCLE_WORKFLOW_ID:0:7}
 
     PrivateSubnet1:
         Description: A reference to the private subnet in the 1st Availability Zone
         Value: !Ref PrivateSubnet1
         Export:
-          Name: !Sub "${EnvironmentName}-PRI1-SN-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PRI1-SN-${CIRCLE_WORKFLOW_ID:0:7}
 
     PrivateSubnet2: 
         Description: A reference to the private subnet in the 2nd Availability Zone
         Value: !Ref PrivateSubnet2
         Export:
-          Name: !Sub "${EnvironmentName}-PRI2-SN-${CIRCLE_WORKFLOW_ID:0:7}"
+          Name: !Sub PRI2-SN-${CIRCLE_WORKFLOW_ID:0:7}
