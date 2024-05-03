@@ -2,9 +2,5 @@
 	{
 		"ParameterKey": "EnvironmentName",
 		"ParameterValue": "StockhunterProject"
-	},
-	{
-	    "ParameterKey": "CIRCLEWORKFLOWID",
-	    "ParameterValue": "${CIRCLE_WORKFLOW_ID:0:7}"
-    } 
+	}
 ]
