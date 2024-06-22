@@ -22,6 +22,10 @@
 	{
 		"ParameterKey": "PrivateSubnet2CIDR",
 		"ParameterValue": "10.0.3.0/24"
+	},
+	{
+		"ParameterKey": "ID",
+		"ParameterValue": "${CIRCLE_WORKFLOW_ID:0:7}"
 	}
 
 ]
