@@ -47,11 +47,11 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run:
-          name: Generate Unique Identifier
-          command: |
-            export UNIQUE_ID=${CIRCLE_WORKFLOW_ID:0:7}
-            echo "Unique Identifier: $UNIQUE_ID"
+      # - run:
+      #     name: Generate Unique Identifier
+      #     command: |
+      #       export UNIQUE_ID=${CIRCLE_WORKFLOW_ID:0:7}
+      #       echo "Unique Identifier: $UNIQUE_ID"
       - run:
           name: Ensure network infrastructure exists
           command: |
@@ -59,7 +59,7 @@ jobs:
             aws cloudformation deploy \
             --template-file .circleci/infrastructure/network.yml \
             --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides ID=$UNIQUE_ID $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) \
             --region us-east-1 \
             --tags project=stockhunterproject
 
@@ -78,7 +78,7 @@ jobs:
             aws cloudformation deploy \
             --template-file .circleci/infrastructure/servers.yml \
             --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --parameter-overrides ID=$UNIQUE_ID $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) \
             --region us-east-1 \
             --tags project=stockhunterproject
             # aws cloudformation create-stack \
