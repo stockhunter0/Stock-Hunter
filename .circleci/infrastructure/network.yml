@@ -260,3 +260,9 @@ Outputs:
         Value: !Ref PrivateSubnet2
         Export:
           Name: !Sub "${EnvironmentName}-PRI2-SN-${ID}"
+
+    WorkflowID:
+        Description: The workflow ID of this deployment
+        Value: !Ref ID
+        Export:
+          Name: !Sub "${AWS::StackName}-WorkflowID"
