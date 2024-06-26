@@ -194,58 +194,58 @@ jobs:
       # - destroy-environment  
 
   cleanup:
-docker:
-  - image: amazon/aws-cli
-steps:
-  - checkout
-  - run:
-      name: install tar and gzip 
-      command: |
-        yum -y install tar gzip
-        yum -y install jq
-  - attach_workspace: 
-      at: ~/
-  - run:
-      name: Get old stack workflow id
-      command: |
-        raw_output=$(aws cloudformation list-exports --query "Exports[?contains(Name, 'WorkflowID-stockhunter')].Value" --output json)
-        echo "$raw_output" | jq -r '.[]' | while IFS= read -r workflow_id; do
-            workflow_id=$(echo "$workflow_id" | sed -e 's/^"//' -e 's/"$//')
-            echo "Checking WorkflowID: \"$workflow_id\""
-            echo "CIRCLE_WORKFLOW_ID: \"$CIRCLE_WORKFLOW_ID\""
+    docker:
+    - image: amazon/aws-cli
+    steps:
+    - checkout
+    - run:
+        name: install tar and gzip 
+        command: |
+          yum -y install tar gzip
+          yum -y install jq
+    - attach_workspace: 
+        at: ~/
+    - run:
+        name: Get old stack workflow id
+        command: |
+          raw_output=$(aws cloudformation list-exports --query "Exports[?contains(Name, 'WorkflowID-stockhunter')].Value" --output json)
+          echo "$raw_output" | jq -r '.[]' | while IFS= read -r workflow_id; do
+              workflow_id=$(echo "$workflow_id" | sed -e 's/^"//' -e 's/"$//')
+              echo "Checking WorkflowID: \"$workflow_id\""
+              echo "CIRCLE_WORKFLOW_ID: \"$CIRCLE_WORKFLOW_ID\""
 
-            if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
-                echo "Current WorkflowID: $workflow_id"
-            else
-                echo "Old WorkflowID: $workflow_id" > /tmp/old_workflow_id.txt
-            fi
-        done
-  - run:
-      name: Read old workflow id and delete stacks
-      command: |
-        if [ -f /tmp/old_workflow_id.txt ]; then
-          export OldWorkflowID=$(cat /tmp/old_workflow_id.txt)
-          export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
-          echo "Stack names: ${STACKS[@]}"
-          
-          match_found=false
-          for stack in "${STACKS[@]}"; do
-            if [[ "$stack" == *"${OldWorkflowID}"* ]]; then
-              match_found=true
-              break
-            fi
+              if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
+                  echo "Current WorkflowID: $workflow_id"
+              else
+                  echo "Old WorkflowID: $workflow_id" > /tmp/old_workflow_id.txt
+              fi
           done
+    - run:
+        name: Read old workflow id and delete stacks
+        command: |
+          if [ -f /tmp/old_workflow_id.txt ]; then
+            export OldWorkflowID=$(cat /tmp/old_workflow_id.txt)
+            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
+            echo "Stack names: ${STACKS[@]}"
+            
+            match_found=false
+            for stack in "${STACKS[@]}"; do
+              if [[ "$stack" == *"${OldWorkflowID}"* ]]; then
+                match_found=true
+                break
+              fi
+            done
 
-          if $match_found; then
-            echo "Deleting stacks with OldWorkflowID: $OldWorkflowID"
-            aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
-            aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
+            if $match_found; then
+              echo "Deleting stacks with OldWorkflowID: $OldWorkflowID"
+              aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
+              aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
+            else
+              echo "NOTHING TO CLEAN"
+            fi
           else
-            echo "NOTHING TO CLEAN"
+            echo "No old workflow ID found"
           fi
-        else
-          echo "No old workflow ID found"
-        fi
     
 
   # cleanup:
