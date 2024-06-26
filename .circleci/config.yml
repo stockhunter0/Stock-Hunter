@@ -250,7 +250,7 @@ jobs:
                 echo " Current WorkflowID: $workflow_id "
             else
                 export OldWorkflowID="$workflow_id"
-                echo " Old WorkflowID: "$workflow_id""
+                echo " Old WorkflowID: "$workflow_id"
             fi
             done
       # - run: 
@@ -262,6 +262,7 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
+            echo "$OldWorkflowID"
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
             --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"
