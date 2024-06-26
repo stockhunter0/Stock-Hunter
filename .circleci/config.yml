@@ -246,7 +246,7 @@ jobs:
                 echo "Checking WorkflowID: \"$workflow_id\""
                 echo "CIRCLE_WORKFLOW_ID: \"$CIRCLE_WORKFLOW_ID\""
 
-            if [[ "$workflow_id" == "{$CIRCLE_WORKFLOW_ID:0:7}" ]]; then
+            if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
                 echo " Current WorkflowID: $workflow_id "
             else
                 export OldWorkflowID="$workflow_id"
