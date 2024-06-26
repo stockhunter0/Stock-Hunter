@@ -220,6 +220,7 @@ jobs:
                   echo "Old WorkflowID: $workflow_id" > /tmp/old_workflow_id.txt
               fi
           done
+          
     - run:
         name: Read old workflow id and delete stacks
         command: |
