@@ -262,7 +262,7 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            echo "${STACKS}"
+            echo "${STACKS[@]}"
             match_found=false
             for stack in "${STACKS[@]}"; do
               if [[ "$stack" == *"${OldWorkflowID}"* ]]; then
