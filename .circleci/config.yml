@@ -239,7 +239,6 @@ jobs:
       - run:
           name: Get old stack workflow id
           command: |
-            #!/bin/bash
             raw_output=$(aws cloudformation list-exports --query "Exports[?contains(Name, 'WorkflowID-stockhunter')].Value" --output json)
             echo "$raw_output" | jq -r '.[]' | while IFS= read -r workflow_id; do
                 workflow_id=$(echo "$workflow_id" | sed -e 's/^"//' -e 's/"$//')
