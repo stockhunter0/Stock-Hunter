@@ -305,16 +305,16 @@ steps:
 workflows:
   default:
     jobs:
-      # - build-flutter
-      # - deploy-infrastructure:
-      #     requires: [build-flutter]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]      
-      # - deploy-flutter:
-      #     requires: [configure-infrastructure] 
-      # - smoke-test:
-      #     requires: [deploy-flutter]   
-      - cleanup
-          # requires: [smoke-test]    
+      - build-flutter
+      - deploy-infrastructure:
+          requires: [build-flutter]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]      
+      - deploy-flutter:
+          requires: [configure-infrastructure] 
+      - smoke-test:
+          requires: [deploy-flutter]   
+      - cleanup:
+          requires: [smoke-test]    
 
              
