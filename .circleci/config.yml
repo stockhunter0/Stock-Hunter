@@ -291,7 +291,7 @@ workflows:
       #     requires: [configure-infrastructure] 
       # - smoke-test:
       #     requires: [deploy-flutter]   
-      - cleanup:
+      - cleanup
           # requires: [smoke-test]    
 
              
