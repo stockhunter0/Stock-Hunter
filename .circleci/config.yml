@@ -220,6 +220,7 @@ jobs:
     - run:
         name: Read old workflow id and delete stacks
         command: |
+          cat /tmp/old_workflow_id.txt
           if [ -f /tmp/old_workflow_id.txt ]; then
             export OldWorkflowID=$(cat /tmp/old_workflow_id.txt)
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
