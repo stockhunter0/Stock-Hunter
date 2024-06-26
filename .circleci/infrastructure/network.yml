@@ -265,4 +265,4 @@ Outputs:
         Description: The workflow ID of this deployment
         Value: !Ref ID
         Export:
-          Name: "WorkflowID"
+          Name: !Sub "${AWS::StackName}-WorkflowID"
