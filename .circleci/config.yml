@@ -262,16 +262,21 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
-            then
-              echo "DELETE CONFIRMED"
-              aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
-              aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
-            else 
-            echo "CAN'T CLEANUP"  
-            fi
-      
-      
+            match_found=false
+            for stack in "${STACKS[@]}"; do
+              if [[ "$stack" == *"${OldWorkflowID}"* ]]; then
+                match_found=true
+              break
+              fi
+            done
+              if $match_found; then
+                echo "DELETE CONFIRMED"
+                aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
+                aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
+              else
+                echo "NOTHING TO CLEAN"
+              fi
+
       
 workflows:
   default:
