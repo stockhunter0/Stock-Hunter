@@ -48,11 +48,6 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      # - run:
-      #     name: Generate Unique Identifier
-      #     command: |
-      #       export UNIQUE_ID=${CIRCLE_WORKFLOW_ID:0:7}
-      #       echo "Unique Identifier: $UNIQUE_ID"
       - run:
           name: Ensure network infrastructure exists
           command: |
@@ -218,9 +213,10 @@ jobs:
                   echo "Current WorkflowID: $workflow_id"
               else
                   echo "Old WorkflowID: $workflow_id" > /tmp/old_workflow_id.txt
+                  cat /tmp/old_workflow_id.txt
               fi
           done
-          
+
     - run:
         name: Read old workflow id and delete stacks
         command: |
@@ -306,16 +302,16 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-flutter
-      - deploy-infrastructure:
-          requires: [build-flutter]
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]      
-      - deploy-flutter:
-          requires: [configure-infrastructure] 
-      - smoke-test:
-          requires: [deploy-flutter]   
-      - cleanup:
-          requires: [smoke-test]    
+      # - build-flutter
+      # - deploy-infrastructure:
+      #     requires: [build-flutter]
+      # - configure-infrastructure:
+      #     requires: [deploy-infrastructure]      
+      # - deploy-flutter:
+      #     requires: [configure-infrastructure] 
+      # - smoke-test:
+      #     requires: [deploy-flutter]   
+      - cleanup
+          # requires: [smoke-test]    
 
              
