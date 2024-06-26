@@ -250,7 +250,7 @@ jobs:
                 echo " Current WorkflowID: $workflow_id "
             else
                 export OldWorkflowID="$workflow_id"
-                echo " Old WorkflowID: "$workflow_id"
+                echo " Old WorkflowID: "$workflow_id""
             fi
             done
       # - run: 
