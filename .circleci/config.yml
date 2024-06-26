@@ -253,15 +253,18 @@ jobs:
                 echo " Old WorkflowID: "$workflow_id""
             fi
             done
-      - run: 
-          name: exporting stacks names
+      # - run: 
+      #     name: exporting stacks names
+      #     command: |
+      #       export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+      #       --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
+      #       echo Stack names: "${STACKS[@]}"
+      - run:
+          name: Remove old stacks and files
           command: |
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
             --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
             echo Stack names: "${STACKS[@]}"
-      - run:
-          name: Remove old stacks and files
-          command: |
             echo "${STACKS[@]}"
             match_found=false
             for stack in "${STACKS[@]}"; do
