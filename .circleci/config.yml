@@ -59,15 +59,7 @@ jobs:
             --region us-east-1 \
             --tags project=stockhunterproject
 
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/network.yml \
-            #   --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/network-parameters.json \
-            #   --region=us-east-1 \
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \    
-
-            #--parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \  
+           
       - run:
           name: Ensure servers infrastructure exist
           command: |
@@ -77,21 +69,13 @@ jobs:
             --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
             --region us-east-1 \
             --tags project=stockhunterproject
-            # aws cloudformation create-stack \
-            #   --template-body file://.circleci/infrastructure/servers.yml \
-            #   --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-            #   --parameters file://.circleci/infrastructure/server-parameters.json \
-            #   --region=us-east-1 \ 
-            #   --tags project=stockhunterproject \
-            #   --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-
-            # --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-              
+            
               
       - run:
           name: install tar and gzip 
           command: |
              yum -y install tar gzip
+
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -117,7 +101,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.12.0rc3-alpine3.18  #circleci/python:3.8     python:3.12.0rc3-alpine3.18                    python:3.8.2-alpine
+      - image: python:3.12.0rc3-alpine3.18 
     steps:
       - checkout
       - add_ssh_keys:
@@ -180,7 +164,7 @@ jobs:
             #!/bin/bash
             LB_URL=$(aws elbv2 describe-load-balancers --query "LoadBalancers[0].DNSName" --output text)
             echo "Load balancer URL: $LB_URL"
-            if curl -s ${LB_URL} | grep "Alpha"                    #        "  change alpha     "
+            if curl -s ${LB_URL} | grep "Alpha"                    #        ".....change alpha in the final project....."
             then
               exit 0
             else
@@ -206,21 +190,17 @@ jobs:
           raw_output=$(aws cloudformation list-exports --query "Exports[?contains(Name, 'WorkflowID-stockhunter')].Value" --output json)
           echo "$raw_output" | jq -r '.[]' | while IFS= read -r workflow_id; do
               workflow_id=$(echo "$workflow_id" | sed -e 's/^"//' -e 's/"$//')
-              echo "Checking WorkflowID: \"$workflow_id\""
-              echo "CIRCLE_WORKFLOW_ID: \"$CIRCLE_WORKFLOW_ID\""
 
               if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
                   echo "Current WorkflowID: $workflow_id"
               else
                   echo "$workflow_id" > /tmp/old_workflow_id.txt
-                  cat /tmp/old_workflow_id.txt
+                  echo "Old WorkflowID: $workflow_id"
               fi
           done
-
     - run:
         name: Read old workflow id and delete stacks
         command: |
-          cat /tmp/old_workflow_id.txt
           if [ -f /tmp/old_workflow_id.txt ]; then
             export OldWorkflowID=$(cat /tmp/old_workflow_id.txt)
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
@@ -237,6 +217,7 @@ jobs:
             if $match_found; then
               echo "Deleting stacks with OldWorkflowID: $OldWorkflowID"
               aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
+              sleep 60
               aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
             else
               echo "NOTHING TO CLEAN"
@@ -244,75 +225,22 @@ jobs:
           else
             echo "No old workflow ID found"
           fi
-    
-
-  # cleanup:
-  #   docker:
-  #     - image: amazon/aws-cli
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: install tar and gzip 
-  #         command: |
-  #            yum -y install tar gzip
-  #            yum -y install jq
-  #     - attach_workspace: 
-  #         at: ~/
-
-
-  #     - run:
-  #         name: Get old stack workflow id
-  #         command: |
-  #           raw_output=$(aws cloudformation list-exports --query "Exports[?contains(Name, 'WorkflowID-stockhunter')].Value" --output json)
-  #           echo "$raw_output" | jq -r '.[]' | while IFS= read -r workflow_id; do
-  #               workflow_id=$(echo "$workflow_id" | sed -e 's/^"//' -e 's/"$//')
-  #               echo "Checking WorkflowID: \"$workflow_id\""
-  #               echo "CIRCLE_WORKFLOW_ID: \"$CIRCLE_WORKFLOW_ID\""
-
-  #           if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
-  #               echo " Current WorkflowID: $workflow_id "
-  #           else
-  #               export OldWorkflowID="$workflow_id"
-  #               echo " Old WorkflowID: "$workflow_id""
-  #           fi
-  #           done
-
-  #           export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-  #           --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
-  #           echo Stack names: "${STACKS[@]}"
-  #           echo "${STACKS[@]}"
-
-  #           match_found=false
-  #           for stack in "${STACKS[@]}"; do
-  #             if [[ "$stack" == *"${OldWorkflowID}"* ]]; then
-  #               match_found=true
-  #             break
-  #             fi
-  #           done
-  #             if $match_found; then
-  #               echo "stockhunter-network-${OldWorkflowID}"
-  #               #echo "DELETE CONFIRMED"
-  #               aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
-  #               aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
-  #             else
-  #               echo "NOTHING TO CLEAN"
-  #             fi
  
      
       
 workflows:
   default:
     jobs:
-      # - build-flutter
-      # - deploy-infrastructure:
-      #     requires: [build-flutter]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]      
-      # - deploy-flutter:
-      #     requires: [configure-infrastructure] 
-      # - smoke-test:
-      #     requires: [deploy-flutter]   
-      - cleanup
-          # requires: [smoke-test]    
+      - build-flutter
+      - deploy-infrastructure:
+          requires: [build-flutter]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]      
+      - deploy-flutter:
+          requires: [configure-infrastructure] 
+      - smoke-test:
+          requires: [deploy-flutter]   
+      - cleanup:
+          requires: [smoke-test]    
 
              
