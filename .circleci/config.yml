@@ -237,6 +237,7 @@ jobs:
               fi
             done
               if $match_found; then
+                echo "stockhunter-network-${OldWorkflowID}"
                 #echo "DELETE CONFIRMED"
                 aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
                 aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
