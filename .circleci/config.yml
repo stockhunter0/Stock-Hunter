@@ -212,7 +212,7 @@ jobs:
               if [[ "$workflow_id" == "${CIRCLE_WORKFLOW_ID:0:7}" ]]; then
                   echo "Current WorkflowID: $workflow_id"
               else
-                  echo "Old WorkflowID: $workflow_id" > /tmp/old_workflow_id.txt
+                  echo "$workflow_id" > /tmp/old_workflow_id.txt
                   cat /tmp/old_workflow_id.txt
               fi
           done
