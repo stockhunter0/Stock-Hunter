@@ -14,6 +14,17 @@
   tags:
     - git
 
+- name: Install tar
+  become: yes
+  yum:
+    name: 
+      - tar
+      - unzip
+      - gzip
+    state: present
+  tags:
+    - tar    
+
 - name: Install required packages
   become: yes
   yum:
@@ -52,87 +63,3 @@
   tags:
     - flutter
 
-# - name: "update packages."
-#   become: yes
-#   apt:
-#     update_cache: yes
-
-# - name: "upgrade packages"
-#   become: yes
-#   apt:
-#     upgrade: yes
-
-
-# - name: remove dependencies that are no longer required
-#   become: yes
-#   apt:
-#     autoremove: yes
-
-# - name: Install Git
-#   apt:
-#     name: git
-#     state: present
-#   become: true
-   
-# - name: Install required packages
-#   apt:
-#     name:
-#       - libXcomposite
-#       - libXcursor
-#       - libXdamage
-#       - libXext
-#       - libXi
-#       - libXtst
-#       - cups-libs
-#       - libXScrnSaver
-#       - libXrandr
-#       - alsa-lib
-#       - atk
-#       - gtk3.x86_64
-#       - gtk3-devel
-#       - clang
-#       - cmake
-#       - ninja-build
-#     state: present
-#   become: true
-
-# - name: Install nginx
-#   apt: 
-#     name: nginx
-#     state: present
-
-# - name: Download Flutter SDK archive
-#   get_url:
-#     url: "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.6-stable.tar.xz"
-#     dest: "/tmp/flutter_linux_3.19.6-stable.tar.xz"
-#   become: true
-  
-    
-# - name: "install dependencies."
-#   become: yes
-#   apt:
-#     name: ["nodejs", "npm"]
-#     state: latest
-#     update_cache: yes
-
-# - name: "install pm2"
-#   become: yes
-#   npm:
-#     name: pm2
-#     global: yes
-#     production: yes
-#     state: present
-
-# - name: declare vars
-#   become: yes
-#   shell: |
-#     export ENVIRONMENT=develpment
-#     export TYPEORM_ENTITIES="./modules/domain/**/*.entity.js"
-#     export TYPEORM_MIGRATIONS="./migrations/*.js"
-#     export TYPEORM_MIGRATIONS_DIR="./migrations"
-#     export TYPEORM_CONNECTION="postgres"
-#     export TYPEORM_HOST="database-1.csub2uflo81x.us-east-1.rds.amazonaws.com"
-#     export TYPEORM_USERNAME="postgres"
-#     export TYPEORM_PASSWORD="12345678"
-#     export TYPEORM_DATABASE="my1stdb"
-#     export TYPEORM_PORT=5432

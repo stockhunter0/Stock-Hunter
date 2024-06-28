@@ -4,9 +4,8 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-User=root
-Type=simple
+User=nobody
 ExecStart=/usr/local/bin/node_exporter
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

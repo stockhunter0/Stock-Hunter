@@ -217,7 +217,7 @@ jobs:
             if $match_found; then
               echo "Deleting stacks with OldWorkflowID: $OldWorkflowID"
               aws cloudformation delete-stack --stack-name "stockhunter-servers-${OldWorkflowID}"
-              sleep 60
+              sleep 120
               aws cloudformation delete-stack --stack-name "stockhunter-network-${OldWorkflowID}"
             else
               echo "NOTHING TO CLEAN"
