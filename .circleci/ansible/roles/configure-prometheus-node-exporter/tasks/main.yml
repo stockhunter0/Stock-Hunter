@@ -1,7 +1,3 @@
-- name: Install and configure Node Exporter
-  hosts: all
-  become: yes
-  tasks:
 - name: Download node exporter tarball
   get_url:
     url: https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz
