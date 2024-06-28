@@ -71,10 +71,10 @@ jobs:
       #       --tags project=stockhunterproject
             
               
-      # - run:
-      #     name: install tar and gzip 
-      #     command: |
-      #        yum -y install tar gzip
+      - run:
+          name: install tar and gzip 
+          command: |
+             yum -y install tar gzip
 
       - run:
           name: Add back-end ip to ansible inventory
