@@ -48,27 +48,27 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      # - run:
-      #     name: Ensure network infrastructure exists
-      #     command: |
-      #       yum install -y jq 
-      #       aws cloudformation deploy \
-      #       --template-file .circleci/infrastructure/network.yml \
-      #       --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --region us-east-1 \
-      #       --tags project=stockhunterproject
+      - run:
+          name: Ensure network infrastructure exists
+          command: |
+            yum install -y jq 
+            aws cloudformation deploy \
+            --template-file .circleci/infrastructure/network.yml \
+            --stack-name "stockhunter-network-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/network-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+            --region us-east-1 \
+            --tags project=stockhunterproject
 
            
-      # - run:
-      #     name: Ensure servers infrastructure exist
-      #     command: |
-      #       aws cloudformation deploy \
-      #       --template-file .circleci/infrastructure/servers.yml \
-      #       --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
-      #       --region us-east-1 \
-      #       --tags project=stockhunterproject
+      - run:
+          name: Ensure servers infrastructure exist
+          command: |
+            aws cloudformation deploy \
+            --template-file .circleci/infrastructure/servers.yml \
+            --stack-name "stockhunter-servers-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --parameter-overrides $(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < .circleci/infrastructure/server-parameters.json) ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+            --region us-east-1 \
+            --tags project=stockhunterproject
             
               
       - run:
@@ -232,16 +232,16 @@ jobs:
 workflows:
   default:
     jobs:
-      # - build-flutter
-      - deploy-infrastructure
-          # requires: [build-flutter]
+      - build-flutter
+      - deploy-infrastructure:
+          requires: [build-flutter]
       - configure-infrastructure:
           requires: [deploy-infrastructure]      
-      # - deploy-flutter:
-      #     requires: [configure-infrastructure] 
-      # - smoke-test:
-      #     requires: [deploy-flutter]   
-      # - cleanup:
-      #     requires: [smoke-test]    
+      - deploy-flutter:
+          requires: [configure-infrastructure] 
+      - smoke-test:
+          requires: [deploy-flutter]   
+      - cleanup:
+          requires: [smoke-test]    
 
              
