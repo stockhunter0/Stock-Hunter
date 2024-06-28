@@ -6,7 +6,7 @@
 - name: Download node exporter tarball
   unarchive:
     src: https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1linux-amd64.tar.gz
-    dest: /tmp
+    dest: /tmp/node_exporter-1.8.1linux-amd64.tar.gz
     remote_src: yes
 
 - name: Move node exporter binary to /usr/local/bin
