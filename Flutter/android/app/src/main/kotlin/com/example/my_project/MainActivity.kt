@@ -1,4 +1,4 @@
-package com.mycompany.alpha
+package com.mycompany.ffenterpriseecomm
 
 import io.flutter.embedding.android.FlutterActivity
 

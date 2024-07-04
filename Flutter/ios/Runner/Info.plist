@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Alpha</string>
+	<string>Stock Hunter</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Alpha</string>
+	<string>Stock Hunter</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -26,10 +26,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>alpha.com</string>
+        <string>stockhunter.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>alpha</string>
+        <string>stockhunter</string>
         </array>
         </dict>
     </array>
@@ -43,7 +43,8 @@
 	<true/>
 
 
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>To calculate ETA</string>
 
 
 	<key>UILaunchStoryboardName</key>

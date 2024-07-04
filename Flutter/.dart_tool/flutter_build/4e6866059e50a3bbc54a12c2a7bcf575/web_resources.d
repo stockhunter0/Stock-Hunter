@@ -1,1 +1,0 @@
- build\\web\\favicon.png build\\web\\icons\\Icon-192.png build\\web\\icons\\Icon-512.png build\\web\\index.html:  D:\\8-\ CI-CD(3h)\\tttt\\stockhunter\\web\\favicon.png D:\\8-\ CI-CD(3h)\\tttt\\stockhunter\\web\\icons\\Icon-192.png D:\\8-\ CI-CD(3h)\\tttt\\stockhunter\\web\\icons\\Icon-512.png D:\\8-\ CI-CD(3h)\\tttt\\stockhunter\\web\\index.html

@@ -1,4 +1,4 @@
-# Alpha
+# Stock Hunter
 
 A new Flutter project.
 

@@ -74,38 +74,190 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
+          name: 'mainHomePage',
+          path: '/mainHomePage',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(
-                  data: params.getParam(
-                    'data',
-                    ParamType.String,
-                  ),
-                ),
+              ? const NavBarPage(initialPage: 'mainHomePage')
+              : const MainHomePageWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'Login') : const LoginWidget(),
+          name: 'productDetails',
+          path: '/productDetails',
+          builder: (context, params) => const ProductDetailsWidget(),
         ),
         FFRoute(
-          name: 'SignUp',
-          path: '/signUp',
+          name: 'fullCartView',
+          path: '/fullCartView',
+          builder: (context, params) => FullCartViewWidget(
+            subPage: params.getParam(
+              'subPage',
+              ParamType.bool,
+            ),
+            subPageName: params.getParam(
+              'subPageName',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'mainFavorites',
+          path: '/mainFavorites',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'SignUp')
-              : const SignUpWidget(),
+              ? const NavBarPage(initialPage: 'mainFavorites')
+              : const MainFavoritesWidget(),
+        ),
+        FFRoute(
+          name: 'sellerDetails',
+          path: '/sellerDetails',
+          builder: (context, params) => const SellerDetailsWidget(),
+        ),
+        FFRoute(
+          name: 'loginPage',
+          path: '/loginPage',
+          builder: (context, params) => const LoginPageWidget(),
+        ),
+        FFRoute(
+          name: 'mainOrderHistory',
+          path: '/mainOrderHistory',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'mainOrderHistory')
+              : const MainOrderHistoryWidget(),
+        ),
+        FFRoute(
+          name: 'mainProfile',
+          path: '/mainProfile',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'mainProfile')
+              : const MainProfileWidget(),
+        ),
+        FFRoute(
+          name: 'createProfile',
+          path: '/createProfile',
+          builder: (context, params) => CreateProfileWidget(
+            editProfile: params.getParam(
+              'editProfile',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'successPage',
+          path: '/successPage',
+          builder: (context, params) => SuccessPageWidget(
+            orderTotal: params.getParam(
+              'orderTotal',
+              ParamType.double,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'orderHistory_Details',
+          path: '/orderHistoryDetails',
+          builder: (context, params) => const OrderHistoryDetailsWidget(),
+        ),
+        FFRoute(
+          name: 'forgotPassword',
+          path: '/forgotPassword',
+          builder: (context, params) => const ForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: 'checkout_FullPage',
+          path: '/checkoutFullPage',
+          builder: (context, params) => const CheckoutFullPageWidget(),
+        ),
+        FFRoute(
+          name: 'checkoutCopy',
+          path: '/checkoutCopy',
+          builder: (context, params) => const CheckoutCopyWidget(),
+        ),
+        FFRoute(
+          name: 'create_Item',
+          path: '/createItem',
+          builder: (context, params) => const CreateItemWidget(),
+        ),
+        FFRoute(
+          name: 'registerpage',
+          path: '/registerpage',
+          builder: (context, params) => const RegisterpageWidget(),
+        ),
+        FFRoute(
+          name: 'List02Products',
+          path: '/list02Products',
+          builder: (context, params) => const List02ProductsWidget(),
+        ),
+        FFRoute(
+          name: 'analysisDashboard',
+          path: '/analysisDashboard',
+          builder: (context, params) => const AnalysisDashboardWidget(),
+        ),
+        FFRoute(
+          name: 'AnalysisDashboard1',
+          path: '/analysisdashboard2',
+          builder: (context, params) => const AnalysisDashboard1Widget(),
+        ),
+        FFRoute(
+          name: 'FruitsVegetablesPage',
+          path: '/fruitsVegetablesPage',
+          builder: (context, params) => const FruitsVegetablesPageWidget(),
+        ),
+        FFRoute(
+          name: 'ClothesPage',
+          path: '/clothesPage',
+          builder: (context, params) => const ClothesPageWidget(),
+        ),
+        FFRoute(
+          name: 'bakeryPage',
+          path: '/bakeryPage',
+          builder: (context, params) => const BakeryPageWidget(),
+        ),
+        FFRoute(
+          name: 'MeatSeaFoodPage',
+          path: '/meatSeaFoodPage',
+          builder: (context, params) => const MeatSeaFoodPageWidget(),
+        ),
+        FFRoute(
+          name: 'MedicinePage',
+          path: '/medicinePage',
+          builder: (context, params) => const MedicinePageWidget(),
+        ),
+        FFRoute(
+          name: 'DrinksPage',
+          path: '/drinksPage',
+          builder: (context, params) => const DrinksPageWidget(),
+        ),
+        FFRoute(
+          name: 'CosmeticsPage',
+          path: '/cosmeticsPage',
+          builder: (context, params) => const CosmeticsPageWidget(),
+        ),
+        FFRoute(
+          name: 'SupermarkePage',
+          path: '/supermarkePage',
+          builder: (context, params) => const SupermarkePageWidget(),
+        ),
+        FFRoute(
+          name: 'lastPiecesOffers',
+          path: '/lastPiecesOffers',
+          builder: (context, params) => const LastPiecesOffersWidget(),
+        ),
+        FFRoute(
+          name: 'Offers40',
+          path: '/offers40',
+          builder: (context, params) => const Offers40Widget(),
+        ),
+        FFRoute(
+          name: 'Offers-newDrops',
+          path: '/offersNewDrops',
+          builder: (context, params) => const OffersNewDropsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -201,7 +353,7 @@ class FFParameters {
   // present is the special extra parameter reserved for the transition info.
   bool get isEmpty =>
       state.allParams.isEmpty ||
-      (state.extraMap.length == 1 &&
+      (state.allParams.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
@@ -222,9 +374,9 @@ class FFParameters {
 
   dynamic getParam<T>(
     String paramName,
-    ParamType type, [
+    ParamType type, {
     bool isList = false,
-  ]) {
+  }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
     }
@@ -274,7 +426,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/login';
+            return '/loginPage';
           }
           return null;
         },
@@ -288,14 +440,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ? Container(
+                  color: FlutterFlowTheme.of(context).info,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/loadingPage@2x.png',
+                      height: 500.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )
@@ -362,4 +513,14 @@ class RootPageContext {
         value: RootPageContext(true, errorRoute),
         child: child,
       );
+}
+
+extension GoRouterLocationExtension on GoRouter {
+  String getCurrentLocation() {
+    final RouteMatch lastMatch = routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
 }

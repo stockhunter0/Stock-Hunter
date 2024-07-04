@@ -5,5 +5,4 @@ export '../supabase.dart';
 export 'row.dart';
 export 'table.dart';
 
-export 'tables/goals.dart';
-export 'tables/tasks.dart';
+export 'tables/g_product.dart';

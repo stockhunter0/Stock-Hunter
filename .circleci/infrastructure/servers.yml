@@ -54,13 +54,7 @@ Resources:
         CidrIp: 0.0.0.0/0
   WebAppLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
-    Properties:
-      # UserData:
-      #   Fn::Base64: !Sub |
-      #     #!/bin/bash
-      #     sudo yum update -y
-      #     sudo yum install httpd -y
-      #     sudo systemctl start httpd.service      
+    Properties:    
        
       ImageId: ami-0c101f26f147fa7fd
       
@@ -74,11 +68,7 @@ Resources:
         Ebs:
           VolumeSize: '20'
 
-      # Tags:                            
-      #   - Key: Name                    
-      #     Value: stockhunter-webserver1          
-      #   - Key: Name
-      #     Value: stockhunter-webserver2                 
+                   
   WebAppGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
