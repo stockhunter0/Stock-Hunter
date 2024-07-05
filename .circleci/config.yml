@@ -14,8 +14,7 @@ commands:
 jobs:
   build-flutter:
     docker:
-      - image: slashwhyorganization/flutter-sdk-image:3.22.2        #kitproject/gitpod-flutter-android
-  #plugfox/flutter  #claudiusk/flutter-sdk       #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
+      - image: slashwhyorganization/flutter-sdk-image:3.22.2    #slashwhyorganization/flutter-sdk-image:3.19.0
     steps:
       - checkout
       - restore_cache:
