@@ -14,7 +14,7 @@ commands:
 jobs:
   build-flutter:
     docker:
-      - image: openpriv/flutter-desktop
+      - image: devsaur/flutter-gitlab-ci-base
   #plugfox/flutter  #claudiusk/flutter-sdk      #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
     steps:
       - checkout
