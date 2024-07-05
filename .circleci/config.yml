@@ -14,7 +14,7 @@ commands:
 jobs:
   build-flutter:
     docker:
-      - image: instrumentisto/flutter  #claudiusk/flutter-sdk      #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
+      - image: instrumentisto/flutter:3  #claudiusk/flutter-sdk      #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
     steps:
       - checkout
       - restore_cache:
