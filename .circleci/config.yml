@@ -14,7 +14,7 @@ commands:
 jobs:
   build-flutter:
     docker:
-      - image: vikunja/flutter-build
+      - image: kitproject/gitpod-flutter-android
   #plugfox/flutter  #claudiusk/flutter-sdk      #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
     steps:
       - checkout
