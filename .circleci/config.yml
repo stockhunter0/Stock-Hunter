@@ -14,7 +14,7 @@ commands:
 jobs:
   build-flutter:
     docker:
-      - image: soytul/flutter
+      - image: upskew/flutter-node
   #plugfox/flutter  #claudiusk/flutter-sdk      #fischerscode/flutter:latest  #slashwhyorganization/flutter-sdk-image:3.19.0
     steps:
       - checkout
