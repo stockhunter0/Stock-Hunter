@@ -29,11 +29,11 @@ jobs:
           command: |
             cd Flutter
             flutter build web --release
-      # - run:
-      #     name: Test flutter
-      #     command: |
-      #       cd Flutter
-      #       flutter test          
+      - run:
+          name: Test flutter
+          command: |
+            cd Flutter
+            flutter test          
       - persist_to_workspace:
           root: Flutter/build/web
           paths:
@@ -165,13 +165,13 @@ jobs:
             #!/bin/bash
             LB_URL=$(aws elbv2 describe-load-balancers --query "LoadBalancers[0].DNSName" --output text)
             echo "Load balancer URL: $LB_URL"
-            if curl -s ${LB_URL} | grep "Alpha"                    #        ".....change alpha in the final project....."
+            if curl -s ${LB_URL} | grep "Stock Hunter"                  
             then
               exit 0
             else
               exit 1
             fi  
-      # - destroy-environment  
+      - destroy-environment  
 
   cleanup:
     docker:
