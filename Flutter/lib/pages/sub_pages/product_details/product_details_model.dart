@@ -2,11 +2,10 @@ import '/components/gradient_button/gradient_button_widget.dart';
 import '/components/top_nav/top_nav_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'indomieproduct_details_widget.dart' show IndomieproductDetailsWidget;
+import 'product_details_widget.dart' show ProductDetailsWidget;
 import 'package:flutter/material.dart';
 
-class IndomieproductDetailsModel
-    extends FlutterFlowModel<IndomieproductDetailsWidget> {
+class ProductDetailsModel extends FlutterFlowModel<ProductDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -32,6 +31,12 @@ class IndomieproductDetailsModel
       choiceChipsValueController3?.value?.firstOrNull;
   set choiceChipsValue3(String? val) =>
       choiceChipsValueController3?.value = val != null ? [val] : [];
+  // State field(s) for ChoiceChips widget.
+  FormFieldController<List<String>>? choiceChipsValueController4;
+  String? get choiceChipsValue4 =>
+      choiceChipsValueController4?.value?.firstOrNull;
+  set choiceChipsValue4(String? val) =>
+      choiceChipsValueController4?.value = val != null ? [val] : [];
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
   // State field(s) for CountController widget.

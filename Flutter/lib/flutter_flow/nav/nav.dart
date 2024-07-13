@@ -90,9 +90,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const MainHomePageWidget(),
         ),
         FFRoute(
-          name: 'ShoeproductDetails',
-          path: '/shoeproductDetails',
-          builder: (context, params) => const ShoeproductDetailsWidget(),
+          name: 'productDetails',
+          path: '/productDetails',
+          builder: (context, params) => const ProductDetailsWidget(),
         ),
         FFRoute(
           name: 'fullCartView',
@@ -185,6 +185,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const CreateItemWidget(),
         ),
         FFRoute(
+          name: 'registerpage',
+          path: '/registerpage',
+          builder: (context, params) => const RegisterpageWidget(),
+        ),
+        FFRoute(
           name: 'List02Products',
           path: '/list02Products',
           builder: (context, params) => const List02ProductsWidget(),
@@ -253,16 +258,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Offers-newDrops',
           path: '/offersNewDrops',
           builder: (context, params) => const OffersNewDropsWidget(),
-        ),
-        FFRoute(
-          name: 'IndomieproductDetails',
-          path: '/indomieproductDetails',
-          builder: (context, params) => const IndomieproductDetailsWidget(),
-        ),
-        FFRoute(
-          name: 'PaneproductDetails',
-          path: '/paneproductDetails',
-          builder: (context, params) => const PaneproductDetailsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

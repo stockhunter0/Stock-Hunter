@@ -13,20 +13,19 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'indomieproduct_details_model.dart';
-export 'indomieproduct_details_model.dart';
+import 'product_details_model.dart';
+export 'product_details_model.dart';
 
-class IndomieproductDetailsWidget extends StatefulWidget {
-  const IndomieproductDetailsWidget({super.key});
+class ProductDetailsWidget extends StatefulWidget {
+  const ProductDetailsWidget({super.key});
 
   @override
-  State<IndomieproductDetailsWidget> createState() =>
-      _IndomieproductDetailsWidgetState();
+  State<ProductDetailsWidget> createState() => _ProductDetailsWidgetState();
 }
 
-class _IndomieproductDetailsWidgetState
-    extends State<IndomieproductDetailsWidget> with TickerProviderStateMixin {
-  late IndomieproductDetailsModel _model;
+class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
+    with TickerProviderStateMixin {
+  late ProductDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -35,7 +34,7 @@ class _IndomieproductDetailsWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => IndomieproductDetailsModel());
+    _model = createModel(context, () => ProductDetailsModel());
 
     animationsMap.addAll({
       'rowOnPageLoadAnimation': AnimationInfo(
@@ -428,7 +427,7 @@ class _IndomieproductDetailsWidgetState
                                                                             10.0),
                                                                     child: Image
                                                                         .network(
-                                                                      'https://www.mazzag.de/wp-content/uploads/2024/01/vzKd5y6KiOAdRijvdPWb7mbDRUMRQ33tfTzyLzDR.webp',
+                                                                      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
                                                                       width:
                                                                           400.0,
                                                                       height:
@@ -468,7 +467,7 @@ class _IndomieproductDetailsWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Text(
-                                                                              'Indomie Instantn Nodles',
+                                                                              'Sport Tennis Shoe',
                                                                               style: FlutterFlowTheme.of(context).headlineLarge.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).headlineLargeFamily,
                                                                                     letterSpacing: 0.0,
@@ -485,7 +484,7 @@ class _IndomieproductDetailsWidgetState
                                                                               12.0),
                                                                           child:
                                                                               Text(
-                                                                            '10.00LE',
+                                                                            '\$150.00',
                                                                             style: FlutterFlowTheme.of(context).titleLarge.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -502,7 +501,7 @@ class _IndomieproductDetailsWidgetState
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            'Ingredients: Wheat Flour, Edible Vegetable Oil (Palm), Salt, Potassium Carbonate, Sodium, Polyphosphate, Naural Gum, Sodium Carbonate, Riboflavin. Seasoning Powder: Salt, Artificial Flavour Powder, Flavour Enhancer(E-621), Pepper Powder, Onion Powder, Yeast Extract, Sugar, Dry Leek, Dry Celery, Garlic Powder and Chilli Powder',
+                                                                            'It\'s the perfect mix: a splash of heritage Nike running and a whole lot of comfort. The fast-paced look also includes a revamped Air unit window to energize your every step.',
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
                                                                                   letterSpacing: 0.0,
@@ -519,7 +518,7 @@ class _IndomieproductDetailsWidgetState
                                                                               FlutterFlowTheme.of(context).alternate,
                                                                         ),
                                                                         Text(
-                                                                          'Flavours',
+                                                                          'Shoe Size',
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .labelMedium
                                                                               .override(
@@ -537,10 +536,12 @@ class _IndomieproductDetailsWidgetState
                                                                           child:
                                                                               FlutterFlowChoiceChips(
                                                                             options: const [
-                                                                              ChipData('Chicken'),
-                                                                              ChipData('Meat'),
-                                                                              ChipData('Vegetables'),
-                                                                              ChipData('Kari')
+                                                                              ChipData('Size 8'),
+                                                                              ChipData('Size 9'),
+                                                                              ChipData('Size 10'),
+                                                                              ChipData('Size 11'),
+                                                                              ChipData('Size 12'),
+                                                                              ChipData('Size 13')
                                                                             ],
                                                                             onChanged: (val) =>
                                                                                 setState(() => _model.choiceChipsValue1 = val?.firstOrNull),
@@ -581,7 +582,83 @@ class _IndomieproductDetailsWidgetState
                                                                             controller: _model.choiceChipsValueController1 ??=
                                                                                 FormFieldController<List<String>>(
                                                                               [
-                                                                                'Chicken'
+                                                                                'Size 8'
+                                                                              ],
+                                                                            ),
+                                                                            wrapped:
+                                                                                true,
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              12.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'Color',
+                                                                            style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              12.0,
+                                                                              0.0,
+                                                                              8.0),
+                                                                          child:
+                                                                              FlutterFlowChoiceChips(
+                                                                            options: const [
+                                                                              ChipData('Gray'),
+                                                                              ChipData('White'),
+                                                                              ChipData('Black & Charcoal'),
+                                                                              ChipData('Blue & White')
+                                                                            ],
+                                                                            onChanged: (val) =>
+                                                                                setState(() => _model.choiceChipsValue2 = val?.firstOrNull),
+                                                                            selectedChipStyle:
+                                                                                ChipStyle(
+                                                                              backgroundColor: FlutterFlowTheme.of(context).primary,
+                                                                              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                    letterSpacing: 0.0,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                                  ),
+                                                                              iconColor: FlutterFlowTheme.of(context).primaryText,
+                                                                              iconSize: 18.0,
+                                                                              elevation: 4.0,
+                                                                            ),
+                                                                            unselectedChipStyle:
+                                                                                ChipStyle(
+                                                                              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                                    letterSpacing: 0.0,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                                  ),
+                                                                              iconColor: FlutterFlowTheme.of(context).primaryText,
+                                                                              iconSize: 18.0,
+                                                                              elevation: 0.0,
+                                                                            ),
+                                                                            chipSpacing:
+                                                                                8.0,
+                                                                            rowSpacing:
+                                                                                12.0,
+                                                                            multiselect:
+                                                                                false,
+                                                                            initialized:
+                                                                                _model.choiceChipsValue2 != null,
+                                                                            alignment:
+                                                                                WrapAlignment.start,
+                                                                            controller: _model.choiceChipsValueController2 ??=
+                                                                                FormFieldController<List<String>>(
+                                                                              [
+                                                                                'Gray'
                                                                               ],
                                                                             ),
                                                                             wrapped:
@@ -790,123 +867,6 @@ class _IndomieproductDetailsWidgetState
                                                                     ],
                                                                     onChanged: (val) =>
                                                                         setState(() =>
-                                                                            _model.choiceChipsValue2 =
-                                                                                val?.firstOrNull),
-                                                                    selectedChipStyle:
-                                                                        ChipStyle(
-                                                                      backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                          ),
-                                                                      iconColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryText,
-                                                                      iconSize:
-                                                                          18.0,
-                                                                      elevation:
-                                                                          4.0,
-                                                                    ),
-                                                                    unselectedChipStyle:
-                                                                        ChipStyle(
-                                                                      backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryBackground,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelLarge
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).labelLargeFamily,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
-                                                                          ),
-                                                                      iconColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primaryText,
-                                                                      iconSize:
-                                                                          18.0,
-                                                                      elevation:
-                                                                          0.0,
-                                                                    ),
-                                                                    chipSpacing:
-                                                                        8.0,
-                                                                    rowSpacing:
-                                                                        12.0,
-                                                                    multiselect:
-                                                                        false,
-                                                                    initialized:
-                                                                        _model.choiceChipsValue2 !=
-                                                                            null,
-                                                                    alignment:
-                                                                        WrapAlignment
-                                                                            .start,
-                                                                    controller: _model
-                                                                            .choiceChipsValueController2 ??=
-                                                                        FormFieldController<
-                                                                            List<String>>(
-                                                                      [
-                                                                        'Size 8'
-                                                                      ],
-                                                                    ),
-                                                                    wrapped:
-                                                                        true,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Color',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                  child:
-                                                                      FlutterFlowChoiceChips(
-                                                                    options: const [
-                                                                      ChipData(
-                                                                          'Gray'),
-                                                                      ChipData(
-                                                                          'White'),
-                                                                      ChipData(
-                                                                          'Black & Charcoal'),
-                                                                      ChipData(
-                                                                          'Blue & White')
-                                                                    ],
-                                                                    onChanged: (val) =>
-                                                                        setState(() =>
                                                                             _model.choiceChipsValue3 =
                                                                                 val?.firstOrNull),
                                                                     selectedChipStyle:
@@ -971,6 +931,123 @@ class _IndomieproductDetailsWidgetState
                                                                             .start,
                                                                     controller: _model
                                                                             .choiceChipsValueController3 ??=
+                                                                        FormFieldController<
+                                                                            List<String>>(
+                                                                      [
+                                                                        'Size 8'
+                                                                      ],
+                                                                    ),
+                                                                    wrapped:
+                                                                        true,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          12.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    'Color',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          12.0,
+                                                                          0.0,
+                                                                          8.0),
+                                                                  child:
+                                                                      FlutterFlowChoiceChips(
+                                                                    options: const [
+                                                                      ChipData(
+                                                                          'Gray'),
+                                                                      ChipData(
+                                                                          'White'),
+                                                                      ChipData(
+                                                                          'Black & Charcoal'),
+                                                                      ChipData(
+                                                                          'Blue & White')
+                                                                    ],
+                                                                    onChanged: (val) =>
+                                                                        setState(() =>
+                                                                            _model.choiceChipsValue4 =
+                                                                                val?.firstOrNull),
+                                                                    selectedChipStyle:
+                                                                        ChipStyle(
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primary,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                          ),
+                                                                      iconColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryText,
+                                                                      iconSize:
+                                                                          18.0,
+                                                                      elevation:
+                                                                          4.0,
+                                                                    ),
+                                                                    unselectedChipStyle:
+                                                                        ChipStyle(
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryBackground,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).labelLargeFamily,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelLargeFamily),
+                                                                          ),
+                                                                      iconColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryText,
+                                                                      iconSize:
+                                                                          18.0,
+                                                                      elevation:
+                                                                          0.0,
+                                                                    ),
+                                                                    chipSpacing:
+                                                                        8.0,
+                                                                    rowSpacing:
+                                                                        12.0,
+                                                                    multiselect:
+                                                                        false,
+                                                                    initialized:
+                                                                        _model.choiceChipsValue4 !=
+                                                                            null,
+                                                                    alignment:
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    controller: _model
+                                                                            .choiceChipsValueController4 ??=
                                                                         FormFieldController<
                                                                             List<String>>(
                                                                       ['Gray'],
@@ -1061,8 +1138,8 @@ class _IndomieproductDetailsWidgetState
                                                                           BorderRadius.circular(
                                                                               8.0),
                                                                       child: Image
-                                                                          .asset(
-                                                                        'assets/images/elfar.png',
+                                                                          .network(
+                                                                        'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
                                                                         width:
                                                                             70.0,
                                                                         height:
@@ -1087,7 +1164,7 @@ class _IndomieproductDetailsWidgetState
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              'Mohamed Elfar Market',
+                                                                              'person',
                                                                               style: FlutterFlowTheme.of(context).titleLarge.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                                                                     letterSpacing: 0.0,
@@ -1154,9 +1231,9 @@ class _IndomieproductDetailsWidgetState
                                                                           direction:
                                                                               Axis.horizontal,
                                                                           initialRating: _model.ratingBarValue ??=
-                                                                              3.0,
+                                                                              4.0,
                                                                           unratedColor:
-                                                                              const Color(0x4C0C332E),
+                                                                              FlutterFlowTheme.of(context).accent2,
                                                                           itemCount:
                                                                               5,
                                                                           itemSize:
@@ -1280,8 +1357,8 @@ class _IndomieproductDetailsWidgetState
                                                                                         padding: const EdgeInsets.all(2.0),
                                                                                         child: ClipRRect(
                                                                                           borderRadius: BorderRadius.circular(8.0),
-                                                                                          child: Image.asset(
-                                                                                            'assets/images/seoudi.jpeg',
+                                                                                          child: Image.network(
+                                                                                            'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
                                                                                             width: 70.0,
                                                                                             height: 70.0,
                                                                                             fit: BoxFit.cover,
@@ -1297,7 +1374,7 @@ class _IndomieproductDetailsWidgetState
                                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                                       children: [
                                                                                         Text(
-                                                                                          'Seudi Martket',
+                                                                                          'Seller 1',
                                                                                           style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                                                                                 letterSpacing: 0.0,
@@ -1307,7 +1384,7 @@ class _IndomieproductDetailsWidgetState
                                                                                         Padding(
                                                                                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                           child: Text(
-                                                                                            'sales@seudi.com',
+                                                                                            'user@domainname.com',
                                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                                                                                                   letterSpacing: 0.0,
@@ -1338,168 +1415,7 @@ class _IndomieproductDetailsWidgetState
                                                                                       Padding(
                                                                                         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                         child: Text(
-                                                                                          '10.50LE',
-                                                                                          style: FlutterFlowTheme.of(context).headlineMedium.override(
-                                                                                                fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
-                                                                                                letterSpacing: 0.0,
-                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            12.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            4.0,
-                                                                            4.0,
-                                                                            12.0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              12.0,
-                                                                              8.0,
-                                                                              12.0,
-                                                                              8.0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.center,
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.all(2.0),
-                                                                                    child: Container(
-                                                                                      width: 44.0,
-                                                                                      height: 44.0,
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: FlutterFlowTheme.of(context).accent1,
-                                                                                        borderRadius: BorderRadius.circular(10.0),
-                                                                                        shape: BoxShape.rectangle,
-                                                                                        border: Border.all(
-                                                                                          color: FlutterFlowTheme.of(context).primary,
-                                                                                          width: 2.0,
-                                                                                        ),
-                                                                                      ),
-                                                                                      child: Padding(
-                                                                                        padding: const EdgeInsets.all(2.0),
-                                                                                        child: ClipRRect(
-                                                                                          borderRadius: BorderRadius.circular(8.0),
-                                                                                          child: Image.asset(
-                                                                                            'assets/images/hyper_one.png',
-                                                                                            width: 70.0,
-                                                                                            height: 70.0,
-                                                                                            fit: BoxFit.cover,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                                                                                    child: Column(
-                                                                                      mainAxisSize: MainAxisSize.max,
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        Text(
-                                                                                          'Hyper One',
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
-                                                                                                letterSpacing: 0.0,
-                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
-                                                                                              ),
-                                                                                        ),
-                                                                                        Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                                          child: Text(
-                                                                                            'cs@bruststoretres.com',
-                                                                                            style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                                  fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
-                                                                                                  letterSpacing: 0.0,
-                                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
-                                                                                                ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Column(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                children: [
-                                                                                  Text(
-                                                                                    'Price',
-                                                                                    style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
-                                                                                          letterSpacing: 0.0,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
-                                                                                        ),
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                        child: Text(
-                                                                                          '11.00LE',
+                                                                                          '899,65',
                                                                                           style: FlutterFlowTheme.of(context).headlineMedium.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                                                                                                 letterSpacing: 0.0,
@@ -1603,7 +1519,7 @@ class _IndomieproductDetailsWidgetState
                                                                                         child: ClipRRect(
                                                                                           borderRadius: BorderRadius.circular(8.0),
                                                                                           child: Image.network(
-                                                                                            'https://st2.depositphotos.com/3060173/5996/v/450/depositphotos_59966033-stock-illustration-sports.jpg',
+                                                                                            'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
                                                                                             width: 70.0,
                                                                                             height: 70.0,
                                                                                             fit: BoxFit.cover,
@@ -1619,7 +1535,7 @@ class _IndomieproductDetailsWidgetState
                                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                                       children: [
                                                                                         Text(
-                                                                                          'Super Store',
+                                                                                          'Seller 2',
                                                                                           style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                                                                                                 letterSpacing: 0.0,
@@ -1629,7 +1545,7 @@ class _IndomieproductDetailsWidgetState
                                                                                         Padding(
                                                                                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                           child: Text(
-                                                                                            'contactsuperstore@gmail.com',
+                                                                                            'user@domainname.com',
                                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                                                                                                   letterSpacing: 0.0,
@@ -1660,7 +1576,168 @@ class _IndomieproductDetailsWidgetState
                                                                                       Padding(
                                                                                         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                         child: Text(
-                                                                                          '15.00LE',
+                                                                                          '987,87',
+                                                                                          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
+                                                                                                letterSpacing: 0.0,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            12.0),
+                                                                child:
+                                                                    Container(
+                                                                  width: double
+                                                                      .infinity,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            4.0,
+                                                                            4.0,
+                                                                            4.0,
+                                                                            12.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              12.0,
+                                                                              8.0,
+                                                                              12.0,
+                                                                              8.0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsets.all(2.0),
+                                                                                    child: Container(
+                                                                                      width: 44.0,
+                                                                                      height: 44.0,
+                                                                                      decoration: BoxDecoration(
+                                                                                        color: FlutterFlowTheme.of(context).accent1,
+                                                                                        borderRadius: BorderRadius.circular(10.0),
+                                                                                        shape: BoxShape.rectangle,
+                                                                                        border: Border.all(
+                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                          width: 2.0,
+                                                                                        ),
+                                                                                      ),
+                                                                                      child: Padding(
+                                                                                        padding: const EdgeInsets.all(2.0),
+                                                                                        child: ClipRRect(
+                                                                                          borderRadius: BorderRadius.circular(8.0),
+                                                                                          child: Image.network(
+                                                                                            'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
+                                                                                            width: 70.0,
+                                                                                            height: 70.0,
+                                                                                            fit: BoxFit.cover,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                                                                                    child: Column(
+                                                                                      mainAxisSize: MainAxisSize.max,
+                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                      children: [
+                                                                                        Text(
+                                                                                          'Seller 3',
+                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                                                                                letterSpacing: 0.0,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
+                                                                                              ),
+                                                                                        ),
+                                                                                        Padding(
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                          child: Text(
+                                                                                            'user@domainname.com',
+                                                                                            style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                                  fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                                                ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Column(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    'Price',
+                                                                                    style: FlutterFlowTheme.of(context).titleLarge.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                                                                                          letterSpacing: 0.0,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleLargeFamily),
+                                                                                        ),
+                                                                                  ),
+                                                                                  Row(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      Padding(
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                                                                                        child: Text(
+                                                                                          '1089,99',
                                                                                           style: FlutterFlowTheme.of(context).headlineMedium.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                                                                                                 letterSpacing: 0.0,

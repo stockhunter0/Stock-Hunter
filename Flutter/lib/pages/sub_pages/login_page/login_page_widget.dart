@@ -138,76 +138,60 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primary,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
           child: Stack(
             children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 230.0,
-                    constraints: const BoxConstraints(
-                      maxWidth: 570.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 40.0, 0.0, 0.0),
-                                    child: Container(
-                                      width: 70.0,
-                                      height: 70.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.asset(
-                                        'assets/images/WhatsApp_Image_2024-07-05_at_07.48.34_a71d7d28.jpg',
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 230.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 40.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Stock Hunter',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          fontSize: 28.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          'Stock Hunter',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 24.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.bold,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
-                              ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -246,7 +230,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               borderRadius: BorderRadius.circular(12.0),
                               border: Border.all(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
+                                width: 2.0,
                               ),
                             ),
                             child: Padding(
@@ -1397,8 +1382,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         }
 
                                                         context.goNamedAuth(
-                                                            'mainHomePage',
-                                                            context.mounted);
+                                                          'createProfile',
+                                                          context.mounted,
+                                                          queryParameters: {
+                                                            'editProfile':
+                                                                serializeParam(
+                                                              false,
+                                                              ParamType.bool,
+                                                            ),
+                                                          }.withoutNulls,
+                                                        );
                                                       },
                                                       text: 'Get Started',
                                                       options: FFButtonOptions(

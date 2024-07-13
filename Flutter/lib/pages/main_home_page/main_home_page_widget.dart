@@ -2453,7 +2453,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'ShoeproductDetails');
+                                                          'productDetails');
                                                     },
                                                     child: Container(
                                                       width: 400.0,
@@ -2628,7 +2628,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Sport Shoe',
+                                                                        'Sport Tennis Shoe',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
@@ -2640,7 +2640,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    '350.00LE',
+                                                                    '\$150.00',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineSmall
@@ -2664,6 +2664,28 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                   MainAxisAlignment
                                                                       .spaceBetween,
                                                               children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '4 Colorways',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                  ),
+                                                                ),
                                                                 Builder(
                                                                   builder:
                                                                       (context) {
@@ -2748,7 +2770,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'IndomieproductDetails');
+                                                          'productDetails');
                                                     },
                                                     child: Container(
                                                       width: 400.0,
@@ -2804,7 +2826,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                         fadeOutDuration:
                                                                             const Duration(milliseconds: 500),
                                                                         imageUrl:
-                                                                            'https://www.mazzag.de/wp-content/uploads/2024/01/vzKd5y6KiOAdRijvdPWb7mbDRUMRQ33tfTzyLzDR.webp',
+                                                                            'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
                                                                         width: double
                                                                             .infinity,
                                                                         fit: BoxFit
@@ -2923,7 +2945,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Indomie Instant Nodels',
+                                                                        'Sport Tennis Shoe',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
@@ -2935,7 +2957,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    '10.00LE',
+                                                                    '\$150.00',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineSmall
@@ -2959,6 +2981,28 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                   MainAxisAlignment
                                                                       .spaceBetween,
                                                               children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '4 Colorways',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                  ),
+                                                                ),
                                                                 Builder(
                                                                   builder:
                                                                       (context) {
@@ -3045,7 +3089,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'ShoeproductDetails');
+                                                          'productDetails');
                                                     },
                                                     child: Container(
                                                       width: 400.0,
@@ -3084,36 +3128,28 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                             Expanded(
                                                               child: Stack(
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Hero(
-                                                                      tag:
-                                                                          'productMain',
-                                                                      transitionOnUserGestures:
-                                                                          true,
+                                                                  Hero(
+                                                                    tag:
+                                                                        'productMain',
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10.0),
                                                                       child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(10.0),
-                                                                        child:
-                                                                            CachedNetworkImage(
-                                                                          fadeInDuration:
-                                                                              const Duration(milliseconds: 500),
-                                                                          fadeOutDuration:
-                                                                              const Duration(milliseconds: 500),
-                                                                          imageUrl:
-                                                                              'https://m.media-amazon.com/images/S/aplus-media/sota/f5c7a3fc-0e95-4eef-acb4-f54def1bd663.__CR0,0,970,600_PT0_SX970_V1___.jpg',
-                                                                          width:
-                                                                              double.infinity,
-                                                                          fit: BoxFit
-                                                                              .fill,
-                                                                          alignment: const Alignment(
-                                                                              0.0,
-                                                                              1.0),
-                                                                        ),
+                                                                          CachedNetworkImage(
+                                                                        fadeInDuration:
+                                                                            const Duration(milliseconds: 500),
+                                                                        fadeOutDuration:
+                                                                            const Duration(milliseconds: 500),
+                                                                        imageUrl:
+                                                                            'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
+                                                                        width: double
+                                                                            .infinity,
+                                                                        fit: BoxFit
+                                                                            .cover,
                                                                       ),
                                                                     ),
                                                                   ),
@@ -3228,7 +3264,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Al-Osra Sugra 1 KG',
+                                                                        'Sport Tennis Shoe',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
@@ -3240,7 +3276,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    '45.00LE',
+                                                                    '\$150.00',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineSmall
@@ -3256,81 +3292,101 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                 ],
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      1.0,
-                                                                      -1.0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      if (loggedIn) {
-                                                                        return Align(
-                                                                          alignment: const AlignmentDirectional(
-                                                                              1.0,
-                                                                              -1.0),
-                                                                          child:
-                                                                              FlutterFlowIconButton(
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            borderRadius:
-                                                                                12.0,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                            buttonSize:
-                                                                                44.0,
-                                                                            icon:
-                                                                                Icon(
-                                                                              Icons.favorite_border,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              size: 24.0,
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              print('unfavorited pressed ...');
-                                                                            },
-                                                                          ).animateOnPageLoad(animationsMap['iconButtonOnPageLoadAnimation5']!),
-                                                                        );
-                                                                      } else {
-                                                                        return Align(
-                                                                          alignment: const AlignmentDirectional(
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '4 Colorways',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
                                                                               0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              FlutterFlowIconButton(
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            borderRadius:
-                                                                                12.0,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                            buttonSize:
-                                                                                44.0,
-                                                                            icon:
-                                                                                Icon(
-                                                                              Icons.favorite_rounded,
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              size: 24.0,
-                                                                            ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              print('favorite pressed ...');
-                                                                            },
-                                                                          ).animateOnPageLoad(animationsMap['iconButtonOnPageLoadAnimation6']!),
-                                                                        );
-                                                                      }
-                                                                    },
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
                                                                   ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if (loggedIn) {
+                                                                      return Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            1.0,
+                                                                            -1.0),
+                                                                        child:
+                                                                            FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              12.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              44.0,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.favorite_border,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            print('unfavorited pressed ...');
+                                                                          },
+                                                                        ).animateOnPageLoad(animationsMap['iconButtonOnPageLoadAnimation5']!),
+                                                                      );
+                                                                    } else {
+                                                                      return Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            1.0,
+                                                                            -1.0),
+                                                                        child:
+                                                                            FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              12.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              44.0,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.favorite_rounded,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            print('favorite pressed ...');
+                                                                          },
+                                                                        ).animateOnPageLoad(animationsMap['iconButtonOnPageLoadAnimation6']!),
+                                                                      );
+                                                                    }
+                                                                  },
+                                                                ),
+                                                              ],
                                                             ),
                                                           ],
                                                         ),
@@ -3352,7 +3408,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'PaneproductDetails');
+                                                          'productDetails');
                                                     },
                                                     child: Container(
                                                       width: 400.0,
@@ -3391,33 +3447,28 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                             Expanded(
                                                               child: Stack(
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Hero(
-                                                                      tag:
-                                                                          'productMain',
-                                                                      transitionOnUserGestures:
-                                                                          true,
+                                                                  Hero(
+                                                                    tag:
+                                                                        'productMain',
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10.0),
                                                                       child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(10.0),
-                                                                        child:
-                                                                            CachedNetworkImage(
-                                                                          fadeInDuration:
-                                                                              const Duration(milliseconds: 500),
-                                                                          fadeOutDuration:
-                                                                              const Duration(milliseconds: 500),
-                                                                          imageUrl:
-                                                                              'https://www.osmanmarket.com/us/136/pidwebp600/1268/f132786017842213951142-1.webp',
-                                                                          width:
-                                                                              double.infinity,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
+                                                                          CachedNetworkImage(
+                                                                        fadeInDuration:
+                                                                            const Duration(milliseconds: 500),
+                                                                        fadeOutDuration:
+                                                                            const Duration(milliseconds: 500),
+                                                                        imageUrl:
+                                                                            'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
+                                                                        width: double
+                                                                            .infinity,
+                                                                        fit: BoxFit
+                                                                            .cover,
                                                                       ),
                                                                     ),
                                                                   ),
@@ -3532,7 +3583,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Atiab Chicken Pane',
+                                                                        'Sport Tennis Shoe',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
@@ -3544,7 +3595,7 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    '220.00LE',
+                                                                    '\$150.00',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineSmall
@@ -3568,6 +3619,28 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                   MainAxisAlignment
                                                                       .spaceBetween,
                                                               children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '4 Colorways',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                        ),
+                                                                  ),
+                                                                ),
                                                                 Builder(
                                                                   builder:
                                                                       (context) {
