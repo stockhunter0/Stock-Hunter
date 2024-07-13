@@ -94,9 +94,9 @@ jobs:
             - project/.circleci/ansible/inventory.txt  
       - destroy-environment  
 
-  configure-infrastructure:
+   configure-infrastructure:
     docker:
-      - image: python:3.12.0rc3-alpine3.18 
+      - image: python:3.12.0rc3-alpine3.18
     steps:
       - checkout
       - add_ssh_keys:
@@ -116,7 +116,7 @@ jobs:
           command: |
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml   
-      - destroy-environment 
+      #- destroy-environment 
 
   deploy-flutter:
     docker:
@@ -147,7 +147,7 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml   
-      - destroy-environment
+      #- destroy-environment
       
   smoke-test:
     docker:
